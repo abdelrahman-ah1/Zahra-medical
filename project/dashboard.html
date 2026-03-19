@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Zahra Medical</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://kit.fontawesome.com/e9d0cce3b5.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="img/LOGO EN WHITE.png" alt="Zahra Logo" class="sidebar-logo">
+                <h2>Admin Panel</h2>
+            </div>
+            <ul class="nav-links">
+                <li class="active" onclick="showSection('overview')">
+                    <i class="fa-solid fa-house"></i> Overview
+                </li>
+                <li onclick="showSection('reservations')">
+                    <i class="fa-solid fa-calendar-check"></i> Reservations
+                </li>
+                <li onclick="showSection('feedbacks')">
+                    <i class="fa-solid fa-star"></i> Feedbacks
+                </li>
+                <li onclick="window.location.href='index.html'">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Website
+                </li>
+                <li class="logout">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1>Dashboard Overview</h1>
+                <div class="user-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=9B2F77&color=fff" width="40px"
+                        height="40px" alt="">
+                    <div>
+                        <h4>Administrator</h4>
+                        <small>Super Admin</small>
+                    </div>
+                </div>
+            </header>
+
+            <div id="overview-section" class="section">
+                <div class="cards">
+                    <div class="card-single">
+                        <div>
+                            <h1 id="total-reservations">0</h1>
+                            <span>Total Reservations</span>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-clipboard-list"></i>
+                        </div>
+                    </div>
+
+                    <div class="card-single">
+                        <div>
+                            <h1 id="pending-tasks">0</h1>
+                            <span>Pending Repairs</span>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                    </div>
+
+                    <div class="card-single">
+                        <div>
+                            <h1 id="avg-rating">0</h1>
+                            <span>Avg Rating</span>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+
+                    <div class="card-single">
+                        <div>
+                            <h1 id="total-revenue">$0</h1>
+                            <span>Est. Revenue</span>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-grid">
+                    <div class="projects">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Recent Reservations</h3>
+                                <button onclick="showSection('reservations')">See all <i
+                                        class="fas fa-arrow-right"></i></button>
+                            </div>
+                            <div class="card-body">
+                                <table width="100%">
+                                    <thead>
+                                        <tr>
+                                            <td>Client Name</td>
+                                            <td>Machine</td>
+                                            <td>Status</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recent-table-body">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reservations-section" class="section" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Manage Reservations</h3>
+                        <input type="text" id="searchRes" placeholder="Search by name..." onkeyup="filterTable()">
+                    </div>
+                    <div class="card-body">
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <td>Date</td>
+                                    <td>Client</td>
+                                    <td>Machine / Model</td>
+                                    <td>Issue (Compliment)</td>
+                                    <td>Phone</td>
+                                    <td>Status</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody id="all-reservations-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="feedbacks-section" class="section" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Customer Reviews</h3>
+                    </div>
+                    <div class="feedback-grid" id="feedback-grid-container">
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

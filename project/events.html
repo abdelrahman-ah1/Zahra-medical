@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | Zahra Medical</title>
+    <link rel="stylesheet" href="events.css">
+    <script src="https://kit.fontawesome.com/e9d0cce3b5.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header>
+    <img src="img/LOGO-01 big.png" alt="Zahra Medical Logo" class="logo">
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="reservation.html">Reservation</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="Log in.html">Sign in</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="header">
+    <img src="img/LOGO EN WHITE.png" class="header-logo" alt="Logo White">
+    <div class="header-left">Events</div>
+</div>
+
+<div class="add-event-wrapper">
+    <button class="add-event-btn">Add event</button>
+</div>
+
+<div class="about-wrapper" id="events-list">
+    <section class="about-section fade-up">
+        <h2>Upcoming Events</h2>
+        <div id="events-container">
+            <p>There are no upcoming events scheduled at this time. Please check back later.</p>
+        </div>
+    </section>
+</div>
+
+<!-- Event Modal -->
+<div id="event-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Add Event</h2>
+        <form id="event-form">
+            <label>Event Name</label><br>
+            <input type="text" name="name" required><br><br>
+            <label>Event Date</label><br>
+            <input type="date" name="date" required><br><br>
+            <button type="submit">Add Event</button>
+        </form>
+        <p id="event-message"></p>
+    </div>
+</div>
+
+<footer class="footer">
+    <!-- Your existing footer code -->
+</footer>
+
+<script src="events.js"></script>
+</body>
+</html>
