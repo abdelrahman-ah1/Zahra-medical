@@ -1,0 +1,71 @@
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "background": "#f9f9ff",
+        "on-secondary-container": "#7a4865",
+        "surface": "#f9f9ff",
+        "on-error": "#ffffff",
+        "outline": "#86717b",
+        "on-tertiary-fixed": "#0b2000",
+        "on-primary-fixed-variant": "#821762",
+        "error": "#ba1a1a",
+        "on-tertiary-fixed-variant": "#245100",
+        "surface-container-low": "#f3f3f9",
+        "inverse-on-surface": "#f0f0f6",
+        "tertiary-fixed": "#b3f584",
+        "primary-container": "#9b2f77",
+        "primary": "#7d125e",
+        "surface-container": "#ededf3",
+        "surface-container-highest": "#e2e2e8",
+        "on-tertiary": "#ffffff",
+        "on-surface-variant": "#53424b",
+        "surface-dim": "#d9d9df",
+        "on-surface": "#191c20",
+        "secondary": "#814e6b",
+        "tertiary-fixed-dim": "#98d86b",
+        "error-container": "#ffdad6",
+        "on-secondary": "#ffffff",
+        "secondary-fixed": "#ffd8ea",
+        "tertiary-container": "#306700",
+        "surface-container-high": "#e7e8ee",
+        "surface-container-lowest": "#ffffff",
+        "secondary-container": "#fdbcde",
+        "on-tertiary-container": "#a4e475",
+        "on-primary": "#ffffff",
+        "secondary-fixed-dim": "#f4b4d5",
+        "inverse-primary": "#ffaeda",
+        "surface-bright": "#f9f9ff",
+        "on-primary-fixed": "#3c002b",
+        "tertiary": "#224d00",
+        "surface-tint": "#a0337b",
+        "on-error-container": "#93000a",
+        "on-background": "#191c20",
+        "surface-variant": "#e2e2e8",
+        "on-secondary-fixed-variant": "#673753",
+        "on-secondary-fixed": "#340c26",
+        "primary-fixed": "#ffd8ea",
+        "primary-fixed-dim": "#ffaeda",
+        "inverse-surface": "#2e3035",
+        "on-primary-container": "#ffc1e1",
+        "outline-variant": "#d9c0cb"
+      },
+      fontFamily: {
+        "headline": ["Plus Jakarta Sans"],
+        "body": ["Plus Jakarta Sans"],
+        "label": ["Plus Jakarta Sans"]
+      },
+      borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+      keyframes: {
+        underlineExpand: {
+          '0%': { transform: 'scaleX(0)' },
+          '100%': { transform: 'scaleX(1)' },
+        }
+      },
+      animation: {
+        'underline-expand': 'underlineExpand 0.4s ease-out forwards',
+      }
+    },
+  },
+}

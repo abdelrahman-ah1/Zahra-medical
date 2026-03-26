@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Zahra Medical - Precision Maintenance and Bespoke Care for medical and aesthetic equipment." />
+    <meta property="og:title" content="Zahra Medical" />
+    <meta property="og:description" content="Precision Maintenance and Bespoke Care." />
+    <meta property="og:image" content="img/LOGO EN pur.png" />
+    <meta property="og:url" content="https://zahratrade.com" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7d125e" />
+    <title>Sign In / Sign Up | Zahra Medical</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="js/tailwind-config.js"></script>
+    <link href="css/global.css" rel="stylesheet" />
+    <style>
+        .clinical-gradient {
+            background: linear-gradient(to right, #7d125e 0%, #9b2f77 100%);
+        }
+
+                /* Custom Tab UI */
+        .tab-active {
+            color: #7d125e;
+            position: relative;
+        }
+        .tab-active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #7d125e;
+            border-radius: 2px;
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hover & Interaction Effects */
+        .input-animated {
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .input-animated:hover {
+            background-color: #f0f0f6;
+            transform: translateY(-1px);
+        }
+
+        .input-animated:focus {
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(125, 18, 94, 0.08);
+            border-color: rgba(125, 18, 94, 0.2);
+        }
+
+        .btn-hover-effect {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-hover-effect:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(125, 18, 94, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .btn-hover-effect:active {
+            transform: translateY(0);
+        }
+
+        .social-btn {
+            transition: all 0.2s ease;
+        }
+
+        .social-btn:hover {
+            background-color: #f3f3f9;
+            border-color: #7d125e;
+            transform: scale(1.02);
+        }
+
+        /* Seamless brand side animation */
+        .brand-section {
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        [data-active-form="signup"] .brand-section-img {
+            transform: scale(1.05);
+            transition: transform 10s linear;
+        }
+    </style>
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/preloader.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body class="bg-surface text-on-surface min-h-screen flex items-center justify-center p-4 md:p-8"
+    data-active-form="signin" id="body-root">
+    <main
+        class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden rounded-[2rem] shadow-2xl bg-surface-container-lowest min-h-[780px]">
+        <!-- Left Section: Image Context -->
+        <section class="lg:col-span-5 relative hidden lg:block overflow-hidden brand-section">
+            <div class="absolute inset-0 z-10 bg-gradient-to-tr from-primary/30 to-transparent mix-blend-multiply">
+            </div>
+            <img alt="Modern Clinical Laboratory" class="w-full h-full object-cover brand-section-img"
+                alt="High-tech bright medical laboratory with clean equipment"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfIeWr5wTjjyICvO2m1sXqGrUyVpvtf1LWU7Qgd9g1oGf7T_6zjmcHEbv9rV6K0WpAlLberh41AReltwMqT0zgiZWKYGl-GBZCrMM2DkGCtlkUY4N-51Jw-HPoTk-Ev1ro3yNflU_A1nGN1u0jcGc4GTSucleYD8u7NSojQ9q-sLFxSO4u6i06SWI7MOYYYRX_gV9NXx_rj1yj8tXTzsJAHn8__DfgKkGJWjUJSg-GwU9W9-4KTII5FQ0gET8Y-Wvm3ogCeKV7Wg" />
+            <div class="absolute bottom-12 left-12 right-12 z-20 text-white">
+                <h2 class="text-3xl font-extrabold mb-4 drop-shadow-md">Precision. Care. Tomorrow.</h2>
+                <p class="text-white/90 font-medium drop-shadow-sm">Advancing healthcare through data-driven insights
+                    and innovative clinical excellence.</p>
+            </div>
+        </section>
+        <!-- Right Section: Interactive Forms -->
+        <section class="lg:col-span-7 p-8 md:p-12 lg:p-16 flex flex-col justify-start relative">
+            <!-- Logo -->
+            <div class="mb-12">
+                <img alt="Zahra Medical Brand Logo" class="h-12 w-auto object-contain"
+                    src="img/LOGO EN pur.png" />
+            </div>
+            <!-- Form Toggle Tabs -->
+            <div class="flex gap-8 mb-10 border-b border-outline-variant/30">
+                <button
+                    class="pb-3 text-sm font-bold uppercase tracking-widest transition-all hover:text-primary active-tab-btn text-outline"
+                    id="tab-btn-signin"
+                    onclick="document.getElementById('body-root').setAttribute('data-active-form', 'signin')">Sign
+                    In</button>
+                <button
+                    class="pb-3 text-sm font-bold uppercase tracking-widest transition-all hover:text-primary active-tab-btn text-outline"
+                    id="tab-btn-signup"
+                    onclick="document.getElementById('body-root').setAttribute('data-active-form', 'signup')">Sign
+                    Up</button>
+            </div>
+            <div class="relative">
+                <!-- Sign In Form Wrapper -->
+                <div class="form-container" id="signin-form-wrapper">
+                    <div class="space-y-2 mb-8">
+                        <h1 class="text-4xl font-extrabold tracking-tight text-on-surface">Welcome Back</h1>
+                        <p class="text-on-surface-variant body-lg">Access your precision healthcare dashboard.</p>
+                    </div>
+                    <form class="space-y-5">
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold uppercase tracking-wider text-outline ml-1" for="signInUsername">Username</label>
+                            <input required id="signInUsername" name="username"
+                                class="input-animated w-full px-5 py-4 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/40 transition-all text-on-surface placeholder:text-outline/50"
+                                placeholder="Enter your username" type="text" minlength="3" />
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold uppercase tracking-wider text-outline ml-1" for="signInPassword">Password</label>
+                            <div class="relative">
+                                <input required id="signInPassword" name="password"
+                                    class="input-animated w-full px-5 py-4 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/40 transition-all text-on-surface placeholder:text-outline/50 pr-12"
+                                    placeholder="••••••••" type="password" minlength="8" />
+                                <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-outline hover:text-primary transition-colors" onclick="togglePassword(this, 'signInPassword')">visibility</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-sm px-1">
+                            <button type="button" class="text-primary font-medium hover:underline transition-all" onclick="toggleResetModal(true)">Forgot Password?</button>
+                        </div>
+                        <button
+                            class="w-full clinical-gradient text-on-primary font-bold py-4 rounded-xl shadow-lg btn-hover-effect"
+                            type="submit">
+                            Login
+                        </button>
+                    </form>
+                    <div class="mt-8">
+                        <div class="relative flex items-center justify-center mb-6">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-outline-variant/30"></div>
+                            </div>
+                            <span
+                                class="relative px-4 bg-surface-container-lowest text-[10px] font-bold uppercase tracking-widest text-outline">Or
+                                Continue With</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button
+                                class="social-btn flex items-center justify-center gap-3 p-3 rounded-xl border border-outline-variant/50">
+                                <span class="material-symbols-outlined text-on-surface-variant text-xl">google</span>
+                                <span class="text-sm font-bold text-on-surface-variant">Google</span>
+                            </button>
+                            <button
+                                class="social-btn flex items-center justify-center gap-3 p-3 rounded-xl border border-outline-variant/50">
+                                <span
+                                    class="material-symbols-outlined text-on-surface-variant text-xl">account_circle</span>
+                                <span class="text-sm font-bold text-on-surface-variant">SSO</span>
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Reset Password Modal -->
+                <div id="reset-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+                    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="toggleResetModal(false)"></div>
+                    <div class="relative bg-surface-container-lowest rounded-[2rem] p-10 max-w-md w-full shadow-2xl">
+                        <div class="text-center mb-8">
+                            <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="material-symbols-outlined text-3xl">lock_reset</span>
+                            </div>
+                            <h2 class="text-2xl font-extrabold text-on-surface">Reset Password</h2>
+                            <p class="text-on-surface-variant text-sm mt-2">Enter your email and we'll send you recovery instructions.</p>
+                        </div>
+                        <form class="space-y-4" onsubmit="handleReset(event)">
+                            <div class="space-y-1">
+                                <label class="text-xs font-bold uppercase tracking-wider text-outline ml-1">Work Email</label>
+                                <input required type="email" class="input-animated w-full px-5 py-4 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/40 text-on-surface" placeholder="name@zahramedical.com" />
+                            </div>
+                            <button type="submit" class="w-full clinical-gradient text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all">Send Link</button>
+                            <button type="button" class="w-full text-on-surface-variant font-bold text-sm py-2" onclick="toggleResetModal(false)">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Sign Up Form Wrapper -->
+                <div class="form-container" id="signup-form-wrapper">
+                    <div class="space-y-2 mb-8">
+                        <h1 class="text-4xl font-extrabold tracking-tight text-on-surface">Join Zahra</h1>
+                        <p class="text-on-surface-variant body-lg">Create your professional medical profile.</p>
+                    </div>
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-4">
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold uppercase tracking-wider text-outline ml-1" for="signUpFullName">Full
+                                Name</label>
+                            <input required id="signUpFullName" name="fullName"
+                                class="input-animated w-full px-4 py-3 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/40 transition-all text-on-surface placeholder:text-outline/40"
+                                placeholder="John Smith" type="text" minlength="3" />
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold uppercase tracking-wider text-outline ml-1" for="signUpEmail">Email</label>
+                            <div class="relative">
+                            <input required id="signUpEmail" name="email"
+                                class="input-animated w-full px-4 py-3 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/40 transition-all text-on-surface placeholder:text-outline/40 pr-10"
+                                placeholder="john@zahramedical.com" type="email" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" />
+                            <span id="email-status-icon" class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-lg hidden transition-colors"></span>
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold uppercase tracking-wider text-outline ml-1" for="signUpPassword">Password</label>
+                            <div class="relative">
+                                <input required id="signUpPassword" name="password"
+                                    class="input-animated w-full px-4 py-3 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/40 transition-all text-on-surface placeholder:text-outline/40 pr-12"
+                                    placeholder="••••••••" type="password" minlength="8" />
+                                <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-outline hover:text-primary transition-colors" onclick="togglePassword(this, 'signUpPassword')">visibility</span>
+                            </div>
+                            <!-- Password Strength Meter -->
+                            <div id="pw-strength-wrap" class="hidden mt-2">
+                                <div class="flex gap-1 h-1.5 rounded-full overflow-hidden">
+                                    <div id="pw-bar-1" class="flex-1 bg-slate-200 rounded-full transition-colors duration-300"></div>
+                                    <div id="pw-bar-2" class="flex-1 bg-slate-200 rounded-full transition-colors duration-300"></div>
+                                    <div id="pw-bar-3" class="flex-1 bg-slate-200 rounded-full transition-colors duration-300"></div>
+                                    <div id="pw-bar-4" class="flex-1 bg-slate-200 rounded-full transition-colors duration-300"></div>
+                                </div>
+                                <p id="pw-strength-label" class="text-[10px] font-bold uppercase tracking-widest mt-1.5 text-slate-400"></p>
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-bold uppercase tracking-wider text-outline ml-1" for="signUpPhone">Phone</label>
+                            <input required id="signUpPhone" name="phone"
+                                class="input-animated w-full px-4 py-3 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/40 transition-all text-on-surface placeholder:text-outline/40"
+                                placeholder="+1 (555) 000" type="tel" />
+                        </div>
+                        <div class="md:col-span-2 pt-2">
+                            <button
+                                class="w-full clinical-gradient text-on-primary font-bold py-4 rounded-xl shadow-lg btn-hover-effect"
+                                type="submit">
+                                Create Account
+                            </button>
+                        </div>
+                    </form>
+                    <p class="mt-8 text-[11px] text-on-surface-variant text-center leading-relaxed">
+                        By creating an account, you agree to the <a class="text-primary font-bold underline"
+                            href="#">Clinical Protocol</a> and <a class="text-primary font-bold underline" href="#">Data
+                            Ethics Policy</a> of Zahra Medical.
+                    </p>
+                </div>
+            </div>
+            
+    <script>
+        const bodyRoot = document.getElementById('body-root');
+        const tabSignin = document.getElementById('tab-btn-signin');
+        const tabSignup = document.getElementById('tab-btn-signup');
+
+        function updateTabs() {
+            const active = bodyRoot.getAttribute('data-active-form');
+            const signinFormWrapper = document.getElementById('signin-form-wrapper');
+            const signupFormWrapper = document.getElementById('signup-form-wrapper');
+            
+            if (active === 'signin') {
+                tabSignin.classList.add('tab-active');
+                tabSignin.classList.remove('text-outline');
+                tabSignup.classList.remove('tab-active');
+                tabSignup.classList.add('text-outline');
+                
+                signinFormWrapper.classList.remove('hidden');
+                signinFormWrapper.classList.add('fade-in');
+                signupFormWrapper.classList.add('hidden');
+                signupFormWrapper.classList.remove('fade-in');
+            } else {
+                tabSignup.classList.add('tab-active');
+                tabSignup.classList.remove('text-outline');
+                tabSignin.classList.remove('tab-active');
+                tabSignin.classList.add('text-outline');
+                
+                signupFormWrapper.classList.remove('hidden');
+                signupFormWrapper.classList.add('fade-in');
+                signinFormWrapper.classList.add('hidden');
+                signinFormWrapper.classList.remove('fade-in');
+            }
+        }
+
+        function togglePassword(icon, inputId) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = 'visibility_off';
+            } else {
+                input.type = 'password';
+                icon.textContent = 'visibility';
+            }
+        }
+
+        function toggleResetModal(show) {
+            const modal = document.getElementById('reset-modal');
+            if (show) modal.classList.remove('hidden');
+            else modal.classList.add('hidden');
+        }
+
+        function handleReset(e) {
+            e.preventDefault();
+            alert('Password reset link sent to your email.');
+            toggleResetModal(false);
+        }
+
+        // Mock Login Persistence
+        const signInForm = document.querySelector('#signin-form-wrapper form');
+        if (signInForm) {
+            signInForm.onsubmit = (e) => {
+                e.preventDefault();
+                const user = document.getElementById('signInUsername').value;
+                localStorage.setItem('userName', user);
+                window.location.href = 'index.html';
+            };
+        }
+
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'data-active-form') {
+                    updateTabs();
+                }
+            });
+        });
+
+        observer.observe(bodyRoot, { attributes: true });
+        updateTabs();
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/form-validation.js"></script>
+    <script>
+        // ── Inline Validation: Password Strength ──────────────────────
+        const pwInput = document.getElementById('signUpPassword');
+        const pwWrap = document.getElementById('pw-strength-wrap');
+        const bars = [document.getElementById('pw-bar-1'), document.getElementById('pw-bar-2'), document.getElementById('pw-bar-3'), document.getElementById('pw-bar-4')];
+        const pwLabel = document.getElementById('pw-strength-label');
+
+        function scorePw(v) {
+            let s = 0;
+            if (v.length >= 8) s++;
+            if (/[A-Z]/.test(v)) s++;
+            if (/[0-9]/.test(v)) s++;
+            if (/[^A-Za-z0-9]/.test(v)) s++;
+            return s;
+        }
+
+        const levels = [
+            { label: '', colors: [] },
+            { label: 'Weak', colors: ['bg-error'] },
+            { label: 'Fair', colors: ['bg-amber-500', 'bg-amber-500'] },
+            { label: 'Good', colors: ['bg-amber-400', 'bg-amber-400', 'bg-amber-400'] },
+            { label: 'Strong', colors: ['bg-green-400', 'bg-green-400', 'bg-green-400', 'bg-green-400'] }
+        ];
+
+        if (pwInput) pwInput.addEventListener('input', () => {
+            const v = pwInput.value;
+            if (!v) { pwWrap.classList.add('hidden'); return; }
+            pwWrap.classList.remove('hidden');
+            const s = scorePw(v);
+            const lvl = levels[s];
+            bars.forEach((b, i) => {
+                b.className = 'flex-1 rounded-full transition-colors duration-300 ' + (lvl.colors[i] || 'bg-slate-200');
+            });
+            pwLabel.textContent = lvl.label;
+            pwLabel.className = 'text-[10px] font-bold uppercase tracking-widest mt-1.5 ' +
+                (s <= 1 ? 'text-error' : s <= 2 ? 'text-amber-500' : s <= 3 ? 'text-amber-400' : 'text-success');
+        });
+
+        // ── Inline Validation: Email Format ───────────────────────────
+        const emailInput = document.getElementById('signUpEmail');
+        const emailIcon = document.getElementById('email-status-icon');
+        const emailRe = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+
+        if (emailInput) emailInput.addEventListener('input', () => {
+            const v = emailInput.value.trim();
+            if (!v) { emailIcon.classList.add('hidden'); return; }
+            emailIcon.classList.remove('hidden');
+            if (emailRe.test(v)) {
+                emailIcon.textContent = 'check_circle';
+                emailIcon.className = 'material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-lg text-success transition-colors';
+            } else {
+                emailIcon.textContent = 'error';
+                emailIcon.className = 'material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-lg text-error transition-colors';
+            }
+        });
+    </script>
+</body>
+
+</html>

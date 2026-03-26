@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Zahra Medical - Precision Maintenance and Bespoke Care for medical and aesthetic equipment." />
+    <meta property="og:title" content="Zahra Medical" />
+    <meta property="og:description" content="Precision Maintenance and Bespoke Care." />
+    <meta property="og:image" content="img/LOGO EN pur.png" />
+    <meta property="og:url" content="https://zahratrade.com" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7d125e" />
+    <title>User Profile | Zahra Medical</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"/>
+    <meta name="theme-color" content="#7d125e" />
+    <title>User Profile | Zahra Medical</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="js/tailwind-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="css/global.css" rel="stylesheet" />
+    <style>
+        .tonal-shift {
+            background-color: #f3f3f9;
+        }
+    </style>
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/preloader.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body class="bg-surface text-on-surface antialiased min-h-screen">
+    <!-- Top Navigation Bar -->
+    <div id="site-header-container"></div>
+    <main class="pt-24 pb-12 px-6 max-w-screen-2xl mx-auto">
+        <!-- Header Section (The Atelier Hero) -->
+        <header
+            class="relative mb-12 p-10 rounded-xl bg-gradient-to-br from-primary to-primary-container text-on-primary overflow-hidden">
+            <div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+                <svg class="h-full w-auto float-right translate-x-10 translate-y-10" viewbox="0 0 200 200"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M44.7,-76.4C58.3,-69.2,70.1,-57.4,78.3,-43.6C86.4,-29.8,90.9,-14.1,89.2,1C87.5,16,79.5,30.3,70.1,43C60.7,55.7,49.8,66.8,36.7,73.4C23.6,80,8.3,82.1,-7.2,80.1C-22.7,78.2,-38.3,72.2,-51.2,62.6C-64.1,53,-74.3,39.8,-79.8,25.1C-85.3,10.3,-86.1,-6.1,-81.4,-20.9C-76.8,-35.7,-66.6,-48.9,-54.2,-56.7C-41.8,-64.5,-27.2,-66.9,-13.2,-71.4C0.8,-75.9,14.7,-82.6,31.1,-83.6C47.5,-84.6,66.4,-79.9,44.7,-76.4Z"
+                        fill="#FFFFFF" transform="translate(100 100)"></path>
+                </svg>
+            </div>
+            <div class="relative z-10 flex flex-col md:flex-row gap-8 items-center md:items-end">
+                <div class="relative group">
+                    <div
+                        class="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden border-4 border-white/20 shadow-2xl relative">
+                        <img id="profile-avatar" alt="Dr. Elena Zahra Profile" class="w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOJr3lEYsqcGDIgkM_c_9ly6uWZ9bvp-ttwkg4a079h7W6UQngX88gcqJ-0VH7JaY-GehagjlluSLpTa9XtMTnCi8j9DruhKIYdNcWomHRHvPgF4EI7y1uq0f6ZAmAWzOCRkAgXvyl8DSiUKKCwBFxLYl4LeP_7bVnDXGA5fKBnMELt3KyFKWfjnnFGco7dPH-mN7AqvMuQjyupRLjw7R0wmQgWwblnJFRUbWWbGBdUsEP4WcfRmfJVfQQIjGeDJ_QtSlTdLtESQ" />
+                        <!-- Avatar Upload Overlay -->
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer" onclick="document.getElementById('avatar-upload').click()">
+                            <span class="material-symbols-outlined text-white text-3xl">photo_camera</span>
+                        </div>
+                    </div>
+                    <input type="file" id="avatar-upload" class="hidden" accept="image/*" />
+                    <button
+                        onclick="document.getElementById('avatar-upload').click()"
+                        class="absolute -bottom-2 -right-2 bg-white text-primary p-2 rounded-lg shadow-lg hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined text-sm">edit</span>
+                    </button>
+                </div>
+                <div class="flex-1 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+                        <span
+                            class="px-3 py-1 rounded-full bg-white/20 text-[10px] font-bold tracking-widest uppercase">Verified
+                            Expert</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-tertiary/20 text-on-tertiary-container text-[10px] font-bold tracking-widest uppercase">Active
+                            Status</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-2">Dr. Elena Zahra</h1>
+                    <p
+                        class="text-on-primary/80 font-medium text-lg flex items-center justify-center md:justify-start gap-2">
+                        Clinical Director <span class="w-1.5 h-1.5 rounded-full bg-white/40"></span> Member since Oct
+                        2021
+                    </p>
+                </div>
+                <div class="flex gap-3">
+                    <button
+                        class="bg-white/10 hover:bg-white/20 backdrop-blur-md px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lg">share</span>
+                        Share Profile
+                    </button>
+                    <button
+                        class="bg-white text-primary px-8 py-3 rounded-xl font-bold shadow-xl hover:shadow-2xl transition-all flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lg">download</span>
+                        Export Data
+                    </button>
+                </div>
+            </div>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Sidebar Navigation -->
+            <aside class="lg:col-span-3 space-y-2">
+                <nav class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_20px_40px_rgba(25,28,32,0.06)]">
+                    <a class="flex items-center gap-4 px-4 py-3 rounded-xl bg-primary/5 text-primary font-semibold transition-all"
+                        href="#">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home_repair_service</span>
+                        Clinic Info
+                    </a>
+                    <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all"
+                        href="#">
+                        <span class="material-symbols-outlined">security</span>
+                        Security
+                    </a>
+                    <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all"
+                        href="#">
+                        <span class="material-symbols-outlined">build_circle</span>
+                        Service History
+                    </a>
+                    <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-all"
+                        href="#">
+                        <span class="material-symbols-outlined" aria-label="Notifications" role="button" tabindex="0">notifications</span>
+                        Notification Settings
+                    </a>
+                    <div class="mt-8 pt-4 border-t border-surface-container">
+                        <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-error font-medium hover:bg-error-container/20 transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined">logout</span>
+                            Logout Account
+                        </a>
+                    </div>
+                </nav>
+                <div class="bg-primary-fixed p-6 rounded-xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h4 class="text-on-primary-fixed font-bold text-lg mb-2">Need Assistance?</h4>
+                        <p class="text-on-primary-fixed/70 text-sm mb-4">Our dedicated support team is available 24/7
+                            for technical clinical support.</p>
+                        <button class="w-full bg-primary text-white py-2 rounded-lg text-sm font-bold">Contact
+                            Support</button>
+                    </div>
+                    <span
+                        class="material-symbols-outlined absolute -right-4 -bottom-4 text-8xl opacity-10 text-on-primary-fixed">support_agent</span>
+                </div>
+            </aside>
+            <!-- Main Content Area -->
+            <div class="lg:col-span-9 space-y-8">
+                <!-- Clinic Information Section -->
+                <section class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_20px_40px_rgba(25,28,32,0.06)]">
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h2 class="text-2xl font-bold tracking-tight text-on-surface">Personal Information</h2>
+                            <p class="text-on-surface-variant text-sm mt-1">Update your billing details and registered equipment inventory.</p>
+                        </div>
+                        <button
+                            class="text-primary font-bold text-sm underline underline-offset-4 decoration-primary/30">Edit
+                            All</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label
+                                class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">First
+                                Name</label>
+                            <input required
+                                class="w-full px-4 py-3 rounded-lg bg-surface-container-low border-none focus:ring-2 focus:ring-primary/40 text-on-surface font-medium"
+                                type="text" minlength="3" value="Elena" /
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Last
+                                Name</label>
+                            <input required
+                                class="w-full px-4 py-3 rounded-lg bg-surface-container-low border-none focus:ring-2 focus:ring-primary/40 text-on-surface font-medium"
+                                type="text" minlength="3" value="Zahra" /
+                        </div>
+                        <div class="space-y-2">
+                            <label
+                                class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Email
+                                Address</label>
+                            <input required
+                                class="w-full px-4 py-3 rounded-lg bg-surface-container-low border-none focus:ring-2 focus:ring-primary/40 text-on-surface font-medium"
+                                type="email" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" value="dr.elena@zahramedical.com" /
+                        </div>
+                        <div class="space-y-2">
+                            <label
+                                class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Phone
+                                Number</label>
+                            <input required
+                                class="w-full px-4 py-3 rounded-lg bg-surface-container-low border-none focus:ring-2 focus:ring-primary/40 text-on-surface font-medium"
+                                type="text" minlength="3" value="+44 20 7946 0123" /
+                        </div>
+                        <div class="md:col-span-2 space-y-2">
+                            <label
+                                class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Clinic
+                                / Organization Name</label>
+                            <input required
+                                class="w-full px-4 py-3 rounded-lg bg-surface-container-low border-none focus:ring-2 focus:ring-primary/40 text-on-surface font-medium"
+                                type="text" minlength="3" value="London Central Medical Institute" /
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Analytics Dashboard Section -->
+                <section class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_20px_40px_rgba(25,28,32,0.06)] relative overflow-hidden" data-aos="fade-up">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 relative z-10 gap-4">
+                        <div>
+                            <h2 class="text-2xl font-bold tracking-tight text-on-surface">Atelier Diagnostics Overview</h2>
+                            <p class="text-on-surface-variant text-sm mt-1">Real-time health telemetry of your registered equipment.</p>
+                        </div>
+                        <button class="text-primary font-bold text-sm bg-primary/10 px-4 py-2 rounded-lg hover:bg-primary/20 transition-colors shadow-sm">Download Report</button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 relative z-10">
+                        <div class="bg-surface-container-low p-5 rounded-xl border border-outline-variant/20 hover:border-primary/40 transition-colors group">
+                            <p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1 group-hover:text-primary transition-colors">Fleet Health</p>
+                            <p class="text-4xl font-black text-primary-container">98.4%</p>
+                            <p class="text-[10px] text-tertiary-container mt-2 font-bold flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[10px]">trending_up</span> +1.2% this month
+                            </p>
+                        </div>
+                        <div class="bg-surface-container-low p-5 rounded-xl border border-outline-variant/20 hover:border-error/40 transition-colors group">
+                            <p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1 group-hover:text-error transition-colors">Active Alerts</p>
+                            <p class="text-4xl font-black text-error">2</p>
+                            <p class="text-[10px] text-error mt-2 font-bold flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[10px]">warning</span> Calibration required
+                            </p>
+                        </div>
+                        <div class="bg-surface-container-low p-5 rounded-xl border border-outline-variant/20 hover:border-primary/40 transition-colors group">
+                            <p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1 group-hover:text-primary transition-colors">Next Service</p>
+                            <p class="text-4xl font-black text-on-surface">14<span class="text-lg font-bold text-on-surface-variant">d</span></p>
+                            <p class="text-[10px] text-on-surface-variant mt-2 font-bold flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[10px]">calendar_clock</span> Scheduled for June 12
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="w-full h-72 relative z-10">
+                        <canvas id="uptimeChart"></canvas>
+                    </div>
+
+                    <!-- Decorative background glow -->
+                    <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-[60px] pointer-events-none"></div>
+                </section>
+
+<!-- Security & Recent Activity (Asymmetric Grid) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Security Section -->
+                    <section
+                        class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_20px_40px_rgba(25,28,32,0.06)]">
+                        <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">verified_user</span>
+                            Security Control
+                        </h3>
+                        <div class="space-y-4">
+                            <div
+                                class="flex items-center justify-between p-4 rounded-xl border border-outline-variant/15">
+                                <div class="flex gap-4 items-center">
+                                    <span class="material-symbols-outlined text-on-surface-variant">password</span>
+                                    <div>
+                                        <p class="font-bold text-sm">Account Password</p>
+                                        <p class="text-[11px] text-on-surface-variant">Last changed 3 months ago</p>
+                                    </div>
+                                </div>
+                                <button class="text-primary text-xs font-bold">Update</button>
+                            </div>
+                            <div
+                                class="flex items-center justify-between p-4 rounded-xl border border-outline-variant/15">
+                                <div class="flex gap-4 items-center">
+                                    <span
+                                        class="material-symbols-outlined text-on-surface-variant">phonelink_lock</span>
+                                    <div>
+                                        <p class="font-bold text-sm">Two-Factor Auth</p>
+                                        <p class="text-[11px] text-on-surface-variant">Currently Enabled</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-10 h-5 bg-tertiary-container/30 rounded-full relative flex items-center px-1">
+                                    <div class="w-3.5 h-3.5 bg-tertiary-container rounded-full translate-x-4"></div>
+                                </div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-surface-container-low">
+                                <p class="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-3 px-1">
+                                    Active Sessions</p>
+                                <div class="flex items-center justify-between text-sm px-1">
+                                    <button type="button" class="text-primary font-medium hover:underline transition-all" onclick="toggleResetModal(true)">Forgot Password?</button>
+                                </div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-sm">laptop_mac</span>
+                                        <span class="text-xs font-medium">MacBook Pro - London, UK</span>
+                                    </div>
+                                    <span
+                                        class="text-[10px] bg-tertiary-container text-white px-2 py-0.5 rounded-full">Active
+                                        Now</span>
+                                </div>
+                                <div class="flex items-center justify-between opacity-60">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-sm">smartphone</span>
+                                        <span class="text-xs font-medium">iPhone 14 - London, UK</span>
+                                    </div>
+                                    <span class="text-[10px] font-medium">2 hrs ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+<!-- Live Repair Tracking Board (Kanban) -->
+                    <section class="md:col-span-2 bg-surface-container-lowest p-8 rounded-xl shadow-[0_20px_40px_rgba(25,28,32,0.06)] overflow-x-auto">
+                        <div class="flex justify-between items-end mb-8 min-w-[800px]">
+                            <div>
+                                <h3 class="text-xl font-bold flex items-center gap-2 mb-1">
+                                    <span class="material-symbols-outlined text-primary">view_kanban</span>
+                                    Active Repair Pipeline
+                                </h3>
+                                <p class="text-sm text-on-surface-variant">Real-time status tracking of your clinic's equipment currently in our workshop.</p>
+                            </div>
+                            <button class="text-xs font-bold text-primary bg-primary/10 px-4 py-2 rounded-lg hover:bg-primary/20 transition-colors">View Maintenance Log</button>
+                        </div>
+
+                        <!-- Kanban Board -->
+                        <div class="flex gap-6 min-w-[800px]">
+                            <!-- Column 1: Awaiting Intake -->
+                            <div class="flex-1 bg-surface-container-low rounded-xl p-4 border border-outline-variant/20 flex flex-col gap-4">
+                                <div class="flex items-center justify-between pb-2 border-b border-outline-variant/15">
+                                    <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-slate-400"></div> Intake
+                                    </span>
+                                    <span class="text-xs font-bold bg-white text-on-surface px-2 py-0.5 rounded-md shadow-sm border border-outline-variant/20">1</span>
+                                </div>
+                                <!-- Card -->
+                                <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/15 hover:border-primary/30 transition-colors cursor-pointer group">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <span class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-1 rounded">Ticket #ZM-1142</span>
+                                        <span class="material-symbols-outlined text-sm text-on-surface-variant group-hover:text-primary transition-colors">arrow_outward</span>
+                                    </div>
+                                    <h4 class="font-bold text-sm mb-1 leading-tight">Alexandrite Laser Tube</h4>
+                                    <p class="text-xs text-on-surface-variant mb-4 leading-relaxed">Pending delivery from clinic for optical inspection.</p>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-1.5 text-[10px] font-bold text-on-surface-variant bg-surface-container-high px-2 py-1 rounded-md">
+                                            <span class="material-symbols-outlined text-[12px]">schedule</span> Logged 2h ago
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Column 2: Diagnostics -->
+                            <div class="flex-1 bg-surface-container-low rounded-xl p-4 border border-outline-variant/20 flex flex-col gap-4">
+                                <div class="flex items-center justify-between pb-2 border-b border-outline-variant/15">
+                                    <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-error"></div> Diagnostics
+                                    </span>
+                                    <span class="text-xs font-bold bg-white text-on-surface px-2 py-0.5 rounded-md shadow-sm border border-outline-variant/20">1</span>
+                                </div>
+                                <!-- Card -->
+                                <div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-l-error shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-md transition-all cursor-pointer group relative overflow-hidden">
+                                    <div class="flex justify-between items-start mb-2 relative z-10">
+                                        <span class="text-[10px] font-bold text-error bg-error/10 px-2 py-1 rounded animate-pulse">Ticket #ZM-1140</span>
+                                    </div>
+                                    <h4 class="font-bold text-sm mb-1 relative z-10 leading-tight">Cynosure Elite+</h4>
+                                    <p class="text-xs text-on-surface-variant mb-4 relative z-10 leading-relaxed">Analyzing cooling compressor failure and power supply drift.</p>
+                                    <div class="w-full bg-surface-container-high h-1.5 rounded-full mb-2 overflow-hidden relative z-10">
+                                        <div class="bg-error h-full w-[30%] rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Column 3: Parts Sourcing -->
+                            <div class="flex-1 bg-surface-container-low rounded-xl p-4 border border-outline-variant/20 flex flex-col gap-4">
+                                <div class="flex items-center justify-between pb-2 border-b border-outline-variant/15">
+                                    <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-secondary"></div> Sourcing Parts
+                                    </span>
+                                    <span class="text-xs font-bold bg-white text-on-surface px-2 py-0.5 rounded-md shadow-sm border border-outline-variant/20">0</span>
+                                </div>
+                                <div class="flex-1 flex items-center justify-center border-2 border-dashed border-outline-variant/20 rounded-xl py-8 bg-surface-container-lowest/50">
+                                    <span class="text-xs text-on-surface-variant font-medium flex items-center gap-2"><span class="material-symbols-outlined text-sm">check_circle</span> Clear Queue</span>
+                                </div>
+                            </div>
+
+                            <!-- Column 4: Final QC -->
+                            <div class="flex-1 bg-surface-container-low rounded-xl p-4 border border-outline-variant/20 flex flex-col gap-4">
+                                <div class="flex items-center justify-between pb-2 border-b border-outline-variant/15">
+                                    <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-[#9b2f77]"></div> Final QC
+                                    </span>
+                                    <span class="text-xs font-bold bg-white text-on-surface px-2 py-0.5 rounded-md shadow-sm border border-outline-variant/20">1</span>
+                                </div>
+                                <!-- Card -->
+                                <div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-l-[#9b2f77] shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-md transition-all cursor-pointer group">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <span class="text-[10px] font-bold text-[#9b2f77] bg-[#9b2f77]/10 px-2 py-1 rounded">Ticket #ZM-1135</span>
+                                    </div>
+                                    <h4 class="font-bold text-sm mb-1 leading-tight">Zimmer Cryo 6</h4>
+                                    <p class="text-xs text-on-surface-variant mb-4 leading-relaxed">Passing thermal calibration. Prepared for clinic dispatch.</p>
+                                    <div class="w-full bg-surface-container-high h-1.5 rounded-full mb-2 overflow-hidden">
+                                        <div class="bg-[#9b2f77] h-full w-[90%] rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer Space -->
+    <div id="site-footer-container"></div>
+    <script src="js/components.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/profile-analytics.js"></script>
+    <script>
+        // Avatar Upload Logic
+        const avatarUpload = document.getElementById('avatar-upload');
+        const profileAvatar = document.getElementById('profile-avatar');
+
+        // Check if avatar is saved in localStorage
+        const savedAvatar = localStorage.getItem('userAvatar');
+        if (savedAvatar) profileAvatar.src = savedAvatar;
+
+        function togglePassword(icon, inputId) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = 'visibility_off';
+            } else {
+                input.type = 'password';
+                icon.textContent = 'visibility';
+            }
+        }
+
+        function toggleResetModal(show) {
+            const modal = document.getElementById('reset-modal');
+            if (show) modal.classList.remove('hidden');
+            else modal.classList.add('hidden');
+        }
+
+        function handleReset(e) {
+            e.preventDefault();
+            alert('Password reset link sent to your email.');
+            toggleResetModal(false);
+        }
+
+        // Mock Login Persistence
+        document.querySelector('#signin-form-wrapper form').onsubmit = (e) => {
+            e.preventDefault();
+            const user = document.getElementById('signInUsername').value;
+            localStorage.setItem('userName', user);
+            window.location.href = 'index.html';
+        };
+
+        avatarUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const dataUrl = event.target.result;
+                    profileAvatar.src = dataUrl;
+                    localStorage.setItem('userAvatar', dataUrl);
+                    // Update header avatar too if applicable
+                    alert('Avatar updated successfully!');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

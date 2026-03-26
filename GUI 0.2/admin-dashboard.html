@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Zahra Command Center | Back-Office</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="js/tailwind-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
+        .dark body { background-color: #0f172a; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .tab-section { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
+</head>
+<body class="text-slate-800 dark:text-slate-200 antialiased transition-colors duration-300 overflow-x-hidden">
+    
+    <!-- Mobile Overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 hidden md:hidden opacity-0 transition-opacity duration-300"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed top-0 left-0 w-64 h-screen bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 flex flex-col z-50 transition-transform duration-300 md:translate-x-0 -translate-x-full">
+        <div class="px-6 py-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="flex flex-col">
+                    <span class="font-extrabold text-slate-800 dark:text-white text-lg leading-tight"><img src="img/LOGO EN pur.png" alt="" width="100px" height="100px"></span>
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-[#7d125e] dark:text-[#9b2f77]">Command Center</span>
+                </div>
+            </div>
+            <button id="close-sidebar" class="md:hidden material-symbols-outlined text-slate-500 hover:text-error transition-colors">close</button>
+        </div>
+        
+        <nav class="flex-1 py-6 px-4 space-y-2 overflow-y-auto" id="sidebar-nav">
+            <div class="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3 ml-2">Main</div>
+            
+            <a href="#overview" data-target="overview" class="sidebar-tab flex items-center gap-3 px-4 py-3 bg-[#7d125e] text-white rounded-xl shadow-[0_0_15px_rgba(125,18,94,0.4)] transition-all">
+                <span class="material-symbols-outlined text-sm">space_dashboard</span>
+                <span class="text-sm font-bold">Overview</span>
+            </a>
+            <a href="#repairs" data-target="repairs" class="sidebar-tab flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-[#7d125e] dark:hover:text-[#9b2f77] transition-all">
+                <span class="material-symbols-outlined text-sm">build</span>
+                <span class="text-sm font-semibold">Active Repairs</span>
+                <span class="ml-auto bg-error text-white text-[10px] font-bold px-2 py-0.5 rounded-full">12</span>
+            </a>
+            <a href="#partners" data-target="partners" class="sidebar-tab flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-[#7d125e] dark:hover:text-[#9b2f77] transition-all">
+                <span class="material-symbols-outlined text-sm">group</span>
+                <span class="text-sm font-semibold">Clinic Partners</span>
+            </a>
+            <a href="#inventory" data-target="inventory" class="sidebar-tab flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-[#7d125e] dark:hover:text-[#9b2f77] transition-all">
+                <span class="material-symbols-outlined text-sm">inventory_2</span>
+                <span class="text-sm font-semibold">Inventory DB</span>
+                <span id="low-stock-badge" class="ml-auto hidden bg-amber-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Low Stock</span>
+            </a>
+            <a href="#invoices" data-target="invoices" class="sidebar-tab flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-[#7d125e] dark:hover:text-[#9b2f77] transition-all">
+                <span class="material-symbols-outlined text-sm">receipt_long</span>
+                <span class="text-sm font-semibold">Invoices</span>
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+            <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-[#7d125e] dark:hover:text-white transition-all">
+                <span class="material-symbols-outlined text-sm">logout</span>
+                <span class="text-sm font-semibold">Exit to Site</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="md:ml-64 min-h-screen flex flex-col">
+        <!-- Topbar -->
+        <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 h-20 px-6 md:px-8 flex items-center justify-between sticky top-0 z-40 transition-colors">
+            <div class="flex items-center gap-4">
+                <button id="open-sidebar" class="md:hidden material-symbols-outlined text-slate-500 hover:text-[#7d125e] transition-colors p-2 -ml-2">menu</button>
+                <div class="relative hidden md:block w-96">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input id="global-search" type="text" placeholder="Search S/N, Clinic Name, Ticket ID..." class="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-none rounded-xl text-sm focus:ring-2 focus:ring-[#7d125e] outline-none text-slate-700 dark:text-slate-200 font-medium transition-colors">
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4 md:gap-6">
+                <!-- Theme Toggle Icon will automatically switch between light_mode / dark_mode -->
+                <button id="theme-toggle" class="material-symbols-outlined text-slate-500 hover:text-[#7d125e] transition-colors p-2">dark_mode</button>
+                
+                <button id="bell-btn" onclick="document.getElementById('notif-drawer').classList.remove('translate-x-full');document.getElementById('notif-overlay').classList.remove('hidden')" class="material-symbols-outlined text-slate-500 hover:text-[#7d125e] transition-colors relative p-2 hidden sm:block">
+                    notifications
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full outline outline-2 outline-white dark:outline-slate-900"></span>
+                </button>
+                <div class="flex items-center gap-3 pl-4 md:pl-6 border-l border-slate-200 dark:border-slate-800">
+                    <img src="https://ui-avatars.com/api/?name=Admin+Zahra&background=7d125e&color=fff" class="w-10 h-10 rounded-full shadow-sm" alt="Admin">
+                    <div class="hidden md:flex flex-col">
+                        <span class="text-sm font-bold text-slate-800 dark:text-slate-200">System Admin</span>
+                        <span class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Engineering Dept</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Breadcrumb -->
+        <div id="breadcrumb-bar" class="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-800 px-6 md:px-8 py-2.5 flex items-center gap-2 text-xs font-semibold">
+            <span class="text-slate-400">Dashboard</span>
+            <span class="material-symbols-outlined text-slate-300 text-sm">chevron_right</span>
+            <span id="breadcrumb-current" class="text-[#7d125e] font-bold">Overview</span>
+        </div>
+
+        <div class="p-4 sm:p-6 md:p-8 flex-1 relative overflow-hidden">
+            
+            <!-- SECTION: OVERVIEW -->
+            <section id="overview" class="tab-section block">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h1 class="text-3xl font-extrabold text-slate-800 dark:text-white mb-2 tracking-tight">Fleet Operations</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm">Real-time aggregate data for all B2B clinic partners and associated medical hardware.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="px-5 py-2.5 bg-gradient-to-r from-[#7d125e] to-[#9b2f77] text-white rounded-xl font-bold flex items-center gap-2 hover:shadow-lg transition-all text-sm shadow-md">
+                            <span class="material-symbols-outlined text-sm">add</span> New Ticket
+                        </button>
+                    </div>
+                </div>
+
+                <!-- KPI Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Card 1 -->
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col relative overflow-hidden group hover:border-[#7d125e] transition-colors">
+                        <div class="flex justify-between items-start mb-4 relative z-10">
+                            <span class="p-2.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-xl"><span class="material-symbols-outlined text-xl">medical_services</span></span>
+                            <span class="text-xs font-bold text-success flex items-center bg-success/10 px-2 py-1 rounded-lg"><span class="material-symbols-outlined text-[10px] mr-1">trending_up</span> 14%</span>
+                        </div>
+                        <span class="text-3xl font-black text-slate-800 dark:text-white mb-1 relative z-10">142</span>
+                        <span class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest relative z-10">Active SLAs</span>
+                        <div class="absolute bottom-0 left-0 w-full h-16 opacity-30 z-0 pointer-events-none"><canvas id="sparkline1"></canvas></div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col relative overflow-hidden group hover:border-error transition-colors">
+                        <div class="flex justify-between items-start mb-4 relative z-10">
+                            <span class="p-2.5 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-500 rounded-xl"><span class="material-symbols-outlined text-xl">build_circle</span></span>
+                            <span class="text-xs font-bold text-error flex items-center bg-error/10 px-2 py-1 rounded-lg"><span class="material-symbols-outlined text-[10px] mr-1">warning</span> 3 Alerts</span>
+                        </div>
+                        <span class="text-3xl font-black text-slate-800 dark:text-white mb-1 relative z-10">12</span>
+                        <span class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest relative z-10">Open Repairs</span>
+                        <div class="absolute bottom-0 left-0 w-full h-16 opacity-30 z-0 pointer-events-none"><canvas id="sparkline2"></canvas></div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col relative overflow-hidden group hover:border-success transition-colors">
+                        <div class="flex justify-between items-start mb-4 relative z-10">
+                            <span class="p-2.5 bg-success/10 text-success rounded-xl"><span class="material-symbols-outlined text-xl">payments</span></span>
+                            <span class="text-xs font-bold text-success flex items-center bg-success/10 px-2 py-1 rounded-lg"><span class="material-symbols-outlined text-[10px] mr-1">trending_up</span> 8%</span>
+                        </div>
+                        <span class="text-3xl font-black text-slate-800 dark:text-white mb-1 relative z-10">2.4<span class="text-lg">M</span></span>
+                        <span class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest relative z-10">MRR (EGP)</span>
+                        <div class="absolute bottom-0 left-0 w-full h-16 opacity-30 z-0 pointer-events-none"><canvas id="sparkline3"></canvas></div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col relative overflow-hidden group hover:border-[#7d125e] transition-colors">
+                        <div class="flex justify-between items-start mb-4 relative z-10">
+                            <span class="p-2.5 bg-[#7d125e]/10 text-[#7d125e] dark:bg-[#9b2f77]/20 dark:text-[#9b2f77] rounded-xl"><span class="material-symbols-outlined text-xl">inventory_2</span></span>
+                        </div>
+                        <span class="text-3xl font-black text-slate-800 dark:text-white mb-1 relative z-10">84</span>
+                        <span class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest relative z-10">Critical Parts Restock</span>
+                        <div class="absolute bottom-0 left-0 w-full h-16 opacity-30 z-0 pointer-events-none"><canvas id="sparkline4"></canvas></div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="lg:col-span-2 bg-white dark:bg-slate-900 p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                            <h3 class="font-bold text-slate-800 dark:text-white text-lg">Revenue vs Repair Volume</h3>
+                        </div>
+                        <div class="h-64 sm:h-72 w-full">
+                            <canvas id="adminRevenueChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col">
+                        <h3 class="font-bold text-slate-800 dark:text-white text-lg mb-6">Device Failure Rates</h3>
+                        <div class="flex-1 w-full flex items-center justify-center min-h-[220px]">
+                            <canvas id="adminFailurePie"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="repairs" class="tab-section hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h1 class="text-3xl font-extrabold text-slate-800 dark:text-white mb-2 tracking-tight">Active Bookings & Repairs</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm">Full telemetry on all incoming service requests and ongoing workshop diagnosis pipelines.</p>
+                    </div>
+                    <div class="flex relative w-full md:w-auto gap-2">
+                        <button onclick="exportRepairsToCSV()" class="px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold shadow-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center gap-1">
+                            <span class="material-symbols-outlined text-sm">download</span> Export CSV
+                        </button>
+                        <button onclick="document.getElementById('new-booking-modal').classList.remove('hidden')" class="px-5 py-2 bg-gradient-to-r from-[#7d125e] to-[#9b2f77] text-white rounded-xl font-bold flex items-center gap-2 hover:shadow-lg transition-all text-sm shadow-md">
+                            <span class="material-symbols-outlined text-sm">add</span> New Booking
+                        </button>
+                        <button id="kanban-toggle" onclick="toggleKanban()" class="px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold shadow-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center gap-1" title="Toggle Kanban View">
+                            <span class="material-symbols-outlined text-sm">view_kanban</span>
+                        </button>
+                        <div class="relative flex-1">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">filter_list</span>
+                            <select id="status-filter" onchange="window.filterRepairs()" class="w-full pl-10 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold shadow-sm outline-none text-slate-700 dark:text-slate-200 appearance-none">
+                                <option value="all">All Statuses</option>
+                                <option value="awaiting">Awaiting Diagnosis</option>
+                                <option value="sourcing">Sourcing Parts</option>
+                                <option value="qc">Final QC</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kanban Board (hidden by default) -->
+                <div id="kanban-board" class="hidden grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-4 border border-amber-200 dark:border-amber-800/40">
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-amber-600 mb-3 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Awaiting Diagnosis</h4>
+                        <div class="space-y-2" id="kanban-awaiting"></div>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-4 border border-blue-200 dark:border-blue-800/40">
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-blue-600 mb-3 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-blue-500"></span> Sourcing Parts</h4>
+                        <div class="space-y-2" id="kanban-sourcing"></div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-2xl p-4 border border-purple-200 dark:border-purple-800/40">
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-purple-600 mb-3 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-purple-500"></span> Final QC</h4>
+                        <div class="space-y-2" id="kanban-qc"></div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-2xl p-4 border border-green-200 dark:border-green-800/40">
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-green-600 mb-3 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-green-500"></span> Completed</h4>
+                        <div class="space-y-2" id="kanban-completed"></div>
+                    </div>
+                </div>
+
+                <div id="repairs-table-wrap" class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-slate-50/50 dark:bg-slate-800/20">
+                        <h3 class="font-bold text-slate-800 dark:text-white text-lg">Booking Ledger</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm border-collapse min-w-[1000px]">
+                            <thead>
+                                <tr class="bg-slate-50 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest text-[10px]">
+                                    <th class="px-6 py-4">Ticket ID & Date</th>
+                                    <th class="px-6 py-4">Clinic / Contact Info</th>
+                                    <th class="px-6 py-4">Equipment / S/N</th>
+                                    <th class="px-6 py-4">Reported Issue Payload</th>
+                                    <th class="px-6 py-4">SLA Due Date</th>
+                                    <th class="px-6 py-4">Current Status</th>
+                                    <th class="px-6 py-4 text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
+                                
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-slate-900 dark:text-white">#REQ-8902</div>
+                                        <div class="text-[10px] text-slate-500 mt-0.5">Today, 09:14 AM</div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold">Apex Dermatology</div>
+                                        <div class="text-[11px] text-slate-500 mt-1 flex flex-col gap-0.5">
+                                            <span>Dr. Sarah Jenkins</span>
+                                            <span>sarah@apexderma.com</span>
+                                            <span>+20 120 456 7890</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="font-semibold">Candela GentleMax Pro</div>
+                                        <div class="text-[10px] font-mono text-slate-500 mt-0.5">SN-8229-C</div>
+                                    </td>
+                                    <td class="px-6 py-4 text-xs leading-relaxed max-w-[250px]">
+                                        Flash lamp shattered during calibration cycle. Water flow error 42 immediately following. Urgent repair requested.
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-error/10 text-error border border-error/20 inline-flex">
+                                            <span class="material-symbols-outlined text-[14px]">timer</span>
+                                            <span class="font-bold text-[11px] uppercase tracking-wider">Today, 14:00</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <select onchange="window.updateStatusColors(this)" class="px-3 py-1 bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400 rounded-md text-[10px] font-bold uppercase tracking-wider outline-none cursor-pointer text-center w-full max-w-[150px] transition-colors border-none ring-0">
+                                            <option value="awaiting" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold" selected>Awaiting Diagnosis</option>
+                                            <option value="sourcing" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold">Sourcing Parts</option>
+                                            <option value="qc" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold">Final QC</option>
+                                            <option value="completed" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold">Completed</option>
+                                        </select>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <button onclick="openTicketPanel(this)" class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-[#7d125e] dark:text-[#9b2f77] font-bold text-xs hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Manage</button>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-slate-900 dark:text-white">#REQ-8895</div>
+                                        <div class="text-[10px] text-slate-500 mt-0.5">Yesterday, 14:30 PM</div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold">Cairo Scan Imaging</div>
+                                        <div class="text-[11px] text-slate-500 mt-1 flex flex-col gap-0.5">
+                                            <span>Eng. Ahmed Hassan</span>
+                                            <span>ahmed.eng@cairoscan.eg</span>
+                                            <span>+20 100 123 4567</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="font-semibold">GE Voluson E10</div>
+                                        <div class="text-[10px] font-mono text-slate-500 mt-0.5">SN-V10-992</div>
+                                    </td>
+                                    <td class="px-6 py-4 text-xs leading-relaxed max-w-[250px]">
+                                        Transducer cable array fraying. Heavy imaging artifacts on 4D volume scans. Needs immediate cable harness swap.
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400 border border-amber-500/20 inline-flex">
+                                            <span class="material-symbols-outlined text-[14px]">schedule</span>
+                                            <span class="font-bold text-[11px] uppercase tracking-wider">Tomorrow, 10:00</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <select onchange="window.updateStatusColors(this)" class="px-3 py-1 bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400 rounded-md text-[10px] font-bold uppercase tracking-wider outline-none cursor-pointer text-center w-full max-w-[150px] transition-colors border-none ring-0">
+                                            <option value="awaiting" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold">Awaiting Diagnosis</option>
+                                            <option value="sourcing" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold" selected>Sourcing Parts</option>
+                                            <option value="qc" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold">Final QC</option>
+                                            <option value="completed" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold">Completed</option>
+                                        </select>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <button onclick="openTicketPanel(this)" class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-[#7d125e] dark:text-[#9b2f77] font-bold text-xs hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Manage</button>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-slate-900 dark:text-white">#REQ-8871</div>
+                                        <div class="text-[10px] text-slate-500 mt-0.5">Mar 20, 11:00 AM</div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold">Elite Aesthetics</div>
+                                        <div class="text-[11px] text-slate-500 mt-1 flex flex-col gap-0.5">
+                                            <span>Nour Youssef</span>
+                                            <span>nour@eliteclinic.com</span>
+                                            <span>+20 111 987 6543</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="font-semibold">Alma Soprano Titanium</div>
+                                        <div class="text-[10px] font-mono text-slate-500 mt-0.5">SN-ALM-T14</div>
+                                    </td>
+                                    <td class="px-6 py-4 text-xs leading-relaxed max-w-[250px]">
+                                        Routine preventitive maintenance contract execution. Needs cooling fluid drain and optical dust blowout.
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 border border-slate-200 dark:border-slate-700 inline-flex">
+                                            <span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                            <span class="font-bold text-[11px] uppercase tracking-wider">Met</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <select onchange="window.updateStatusColors(this)" class="px-3 py-1 bg-[#7d125e]/10 text-[#7d125e] dark:bg-[#9b2f77]/20 dark:text-[#9b2f77] rounded-md text-[10px] font-bold uppercase tracking-wider outline-none cursor-pointer text-center w-full max-w-[150px] transition-colors border-none ring-0">
+                                            <option value="awaiting" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold">Awaiting Diagnosis</option>
+                                            <option value="sourcing" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold">Sourcing Parts</option>
+                                            <option value="qc" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold" selected>Final QC</option>
+                                            <option value="completed" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold">Completed</option>
+                                        </select>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <button onclick="openTicketPanel(this)" class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-[#7d125e] dark:text-[#9b2f77] font-bold text-xs hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Manage</button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: CLINIC PARTNERS -->
+            <section id="partners" class="tab-section hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h1 class="text-3xl font-extrabold text-slate-800 dark:text-white mb-2 tracking-tight">Clinic Partners Directory</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm">Comprehensive registry of all B2B clinic clients, their technical footprints, and SLA standings.</p>
+                    </div>
+                    <button onclick="document.getElementById('add-partner-modal').classList.remove('hidden')" class="px-5 py-2.5 bg-gradient-to-r from-[#7d125e] to-[#9b2f77] text-white rounded-xl font-bold flex items-center gap-2 hover:shadow-lg transition-all text-sm shadow-md flex-shrink-0">
+                        <span class="material-symbols-outlined text-sm">add</span> Add Partner
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Partner Card 1 -->
+                    <div class="partner-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row gap-6 hover:shadow-md transition-all">
+                        <div class="w-16 h-16 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-2xl shrink-0">AD</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg text-slate-800 dark:text-white mb-1">Apex Dermatology</h3>
+                            <div class="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 mb-4">
+                                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> New Cairo, EG</span>
+                                <span class="flex items-center gap-1 text-success font-bold"><span class="material-symbols-outlined text-[14px]">verified</span> Diamond SLA</span>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl mb-4">
+                                <div>
+                                    <div class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Fleet Size</div>
+                                    <div class="font-bold text-slate-800 dark:text-white">8 Devices</div>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Total Lifetime MRR</div>
+                                    <div class="font-bold text-slate-800 dark:text-white">EGP 1.2M</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm">
+                                    <div class="font-semibold text-slate-700 dark:text-slate-300">Dr. Sarah Jenkins</div>
+                                    <div class="text-xs text-slate-500">+20 120 456 7890</div>
+                                </div>
+                                <button class="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-slate-500 hover:text-[#7d125e] dark:hover:text-[#9b2f77] transition-colors"><span class="material-symbols-outlined text-sm">mail</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Partner Card 2 -->
+                    <div class="partner-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row gap-6 hover:shadow-md transition-all">
+                        <div class="w-16 h-16 rounded-xl bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold text-2xl shrink-0"><span class="material-symbols-outlined text-3xl">medical_services</span></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg text-slate-800 dark:text-white mb-1">Cairo Scan Imaging</h3>
+                            <div class="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 mb-4">
+                                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Maadi, EG</span>
+                                <span class="flex items-center gap-1 text-blue-500 font-bold"><span class="material-symbols-outlined text-[14px]">shield</span> Standard SLA</span>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl mb-4">
+                                <div>
+                                    <div class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Fleet Size</div>
+                                    <div class="font-bold text-slate-800 dark:text-white">32 Devices</div>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Total Lifetime MRR</div>
+                                    <div class="font-bold text-slate-800 dark:text-white">EGP 5.8M</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm">
+                                    <div class="font-semibold text-slate-700 dark:text-slate-300">Eng. Ahmed Hassan</div>
+                                    <div class="text-xs text-slate-500">+20 100 123 4567</div>
+                                </div>
+                                <button class="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-slate-500 hover:text-[#7d125e] dark:hover:text-[#9b2f77] transition-colors"><span class="material-symbols-outlined text-sm">mail</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Partner Card 3 -->
+                    <div class="partner-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row gap-6 hover:shadow-md transition-all">
+                        <div class="w-16 h-16 rounded-xl bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-500 flex items-center justify-center font-bold text-2xl shrink-0">EA</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg text-slate-800 dark:text-white mb-1">Elite Aesthetics</h3>
+                            <div class="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 mb-4">
+                                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> Sheikh Zayed, EG</span>
+                                <span class="flex items-center gap-1 text-slate-400 font-bold"><span class="material-symbols-outlined text-[14px]">cancel</span> No Contract (On-Demand)</span>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl mb-4">
+                                <div>
+                                    <div class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Fleet Size</div>
+                                    <div class="font-bold text-slate-800 dark:text-white">2 Devices</div>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Total Lifetime MRR</div>
+                                    <div class="font-bold text-slate-800 dark:text-white">EGP 80k</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm">
+                                    <div class="font-semibold text-slate-700 dark:text-slate-300">Nour Youssef</div>
+                                    <div class="text-xs text-slate-500">+20 111 987 6543</div>
+                                </div>
+                                <button class="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-slate-500 hover:text-[#7d125e] dark:hover:text-[#9b2f77] transition-colors"><span class="material-symbols-outlined text-sm">mail</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            
+            <!-- SECTION: INVENTORY -->
+            <section id="inventory" class="tab-section hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h1 class="text-3xl font-extrabold text-slate-800 dark:text-white mb-2 tracking-tight">Inventory Management</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm">Track spare parts, consumables, and tracking devices across all active Zahra warehouses.</p>
+                    </div>
+                    <div class="flex gap-3 items-center">
+                        <div class="relative">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">filter_list</span>
+                            <select id="inventory-category" onchange="window.filterInventory()" class="pl-9 pr-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold shadow-sm outline-none text-slate-700 dark:text-slate-200 appearance-none">
+                                <option value="all">All Categories</option>
+                                <option value="Sonar Optics">Sonar Optics</option>
+                                <option value="Laser Consumables">Laser Consumables</option>
+                            </select>
+                        </div>
+                        <button class="px-5 py-2.5 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all text-sm shadow-sm">
+                            <span class="material-symbols-outlined text-sm">qr_code_scanner</span> Scan Item
+                        </button>
+                        <button onclick="document.getElementById('add-stock-modal').classList.remove('hidden')" class="px-5 py-2.5 bg-gradient-to-r from-[#7d125e] to-[#9b2f77] text-white rounded-xl font-bold flex items-center gap-2 hover:shadow-lg transition-all text-sm shadow-md">
+                            <span class="material-symbols-outlined text-sm">add</span> Add Stock
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm border-collapse min-w-[800px]">
+                            <thead>
+                                <tr class="bg-slate-50 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest text-[10px]">
+                                    <th class="px-6 py-4">SKU / Item Name</th>
+                                    <th class="px-6 py-4">Category</th>
+                                    <th class="px-6 py-4">Stock Level</th>
+                                    <th class="px-6 py-4">Unit Price (EGP)</th>
+                                    <th class="px-6 py-4">Warehouse Location</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                     <td class="px-6 py-4 font-bold text-slate-900 dark:text-white">PRB-4D-GE<br><span class="text-[10px] text-slate-500 font-normal">GE Voluson 4D Probe</span></td>
+                                     <td class="px-6 py-4">Sonar Optics</td>
+                                     <td class="px-6 py-4">
+                                         <span class="text-success font-bold flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-success"></span> 14 Available</span>
+                                         <div class="flex items-center gap-1 mt-2">
+                                             <button onclick="adjustStock(this,-1)" class="w-6 h-6 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center">−</button>
+                                             <input type="number" value="14" min="0" class="stock-qty w-14 text-center text-sm font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md py-0.5 outline-none focus:ring-1 focus:ring-[#7d125e]">
+                                             <button onclick="adjustStock(this,1)" class="w-6 h-6 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center">+</button>
+                                         </div>
+                                     </td>
+                                    <td class="px-6 py-4 font-mono">14,500</td>
+                                    <td class="px-6 py-4">Shelf A-12 (Main HQ)</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                     <td class="px-6 py-4 font-bold text-slate-900 dark:text-white">LMP-CND-GMX<br><span class="text-[10px] text-slate-500 font-normal">Candela Flash Lamp Assy</span></td>
+                                     <td class="px-6 py-4">Laser Consumables</td>
+                                     <td class="px-6 py-4">
+                                         <span class="text-error font-bold flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-error"></span> 2 Critical</span>
+                                         <div class="flex items-center gap-1 mt-2">
+                                             <button onclick="adjustStock(this,-1)" class="w-6 h-6 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center">−</button>
+                                             <input type="number" value="2" min="0" class="stock-qty w-14 text-center text-sm font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md py-0.5 outline-none focus:ring-1 focus:ring-[#7d125e]">
+                                             <button onclick="adjustStock(this,1)" class="w-6 h-6 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center">+</button>
+                                         </div>
+                                     </td>
+                                    <td class="px-6 py-4 font-mono">3,200</td>
+                                    <td class="px-6 py-4">Bin C-04 (Main HQ)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: INVOICES -->
+            <section id="invoices" class="tab-section hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h1 class="text-3xl font-extrabold text-slate-800 dark:text-white mb-2 tracking-tight">Billing & Invoices</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm">Financial ledger for completed repair tickets, parts sales, and active SLA subscriptions.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-center">
+                        <div class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Pending Receivables</div>
+                        <div class="text-3xl font-black text-slate-800 dark:text-white">EGP 145,000</div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-center">
+                        <div class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Collected This Month</div>
+                        <div class="text-3xl font-black text-slate-800 dark:text-white">EGP 320,500</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-[#7d125e] to-[#9b2f77] p-6 rounded-2xl shadow-sm text-white flex flex-col justify-center relative overflow-hidden">
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-7xl opacity-20">receipt_long</span>
+                        <div class="text-[10px] font-bold uppercase tracking-widest text-white/70 mb-2 relative z-10">Generate Invoice</div>
+                        <button onclick="document.getElementById('new-invoice-modal').classList.remove('hidden')" class="w-full mt-2 py-2.5 bg-white text-[#7d125e] rounded-xl font-bold flex items-center justify-center gap-2 hover:shadow-lg transition-all text-sm relative z-10 hover:-translate-y-0.5">
+                            <span class="material-symbols-outlined text-sm">add</span> New Document
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Filter by Status</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <button onclick="filterInvoices('all')" id="inv-filter-all" class="inv-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-[#7d125e] text-white transition-colors">All</button>
+                        <button onclick="filterInvoices('pending')" id="inv-filter-pending" class="inv-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Pending</button>
+                        <button onclick="filterInvoices('sent')" id="inv-filter-sent" class="inv-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Sent</button>
+                        <button onclick="filterInvoices('paid')" id="inv-filter-paid" class="inv-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Paid</button>
+                        <button onclick="filterInvoices('overdue')" id="inv-filter-overdue" class="inv-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-error/10 text-error hover:bg-error/20 transition-colors">Overdue</button>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm border-collapse min-w-[800px]">
+                            <thead>
+                                <tr class="bg-slate-50 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest text-[10px]">
+                                    <th class="px-6 py-4">Invoice #</th>
+                                    <th class="px-6 py-4">Client</th>
+                                    <th class="px-6 py-4">Issue Date</th>
+                                    <th class="px-6 py-4">Description</th>
+                                    <th class="px-6 py-4">Amount</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40" data-status="pending" data-issue-date="2026-03-22">
+                                    <td class="px-6 py-4 font-bold text-slate-900 dark:text-white">INV-2026-0042</td>
+                                    <td class="px-6 py-4 font-semibold">Apex Dermatology</td>
+                                    <td class="px-6 py-4 text-slate-500 text-xs">Mar 22, 2026</td>
+                                    <td class="px-6 py-4 text-xs font-semibold">GE Voluson Mainboard Repair</td>
+                                    <td class="px-6 py-4 font-mono font-bold">18,500</td>
+                                    <td class="px-6 py-4">
+                                        <select onchange="window.updateInvoiceStatus(this)" class="px-3 py-1 bg-white-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400 rounded-md text-[10px] font-bold uppercase tracking-wider outline-none cursor-pointer text-center w-full max-w-[100px] transition-colors border-none ring-0">
+                                            <option value="pending" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold" selected>Pending</option>
+                                            <option value="sent" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold">Sent</option>
+                                            <option value="paid" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold">Paid</option>
+                                        </select>
+                                    </td>
+                                    <td class="px-6 py-4 text-right whitespace-nowrap">
+                                        <button onclick="window.generateInvoicePDF(this, 'view')" class="text-slate-400 hover:text-[#7d125e] transition-colors mr-2" title="View"><span class="material-symbols-outlined">visibility</span></button>
+                                        <button onclick="window.generateInvoicePDF(this, 'download')" class="text-slate-400 hover:text-[#7d125e] transition-colors" title="Download"><span class="material-symbols-outlined">download</span></button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40" data-status="paid" data-issue-date="2026-03-18">
+                                    <td class="px-6 py-4 font-bold text-slate-900 dark:text-white">INV-2026-0041</td>
+                                    <td class="px-6 py-4 font-semibold">Elite Aesthetics</td>
+                                    <td class="px-6 py-4 text-slate-500 text-xs">Mar 18, 2026</td>
+                                    <td class="px-6 py-4 text-xs font-semibold">Laser Q-Switch Calibration</td>
+                                    <td class="px-6 py-4 font-mono font-bold">4,200</td>
+                                    <td class="px-6 py-4">
+                                        <select onchange="window.updateInvoiceStatus(this)" class="px-3 py-1 bg-green-500/10 text-green-500 dark:bg-green-500/20 dark:text-green-500 rounded-md text-[10px] font-bold uppercase tracking-wider outline-none cursor-pointer text-center w-full max-w-[100px] transition-colors border-none ring-0">
+                                            <option value="pending" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold">Pending</option>
+                                            <option value="sent" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold">Sent</option>
+                                            <option value="paid" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white font-semibold" selected>Paid</option>
+                                        </select>
+                                    </td>
+                                    <td class="px-6 py-4 text-right whitespace-nowrap">
+                                        <button onclick="window.generateInvoicePDF(this, 'view')" class="text-slate-400 hover:text-[#7d125e] transition-colors mr-2" title="View"><span class="material-symbols-outlined">visibility</span></button>
+                                        <button onclick="window.generateInvoicePDF(this, 'download')" class="text-slate-400 hover:text-[#7d125e] transition-colors" title="Download"><span class="material-symbols-outlined">download</span></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+
+    <!-- UI Logic: Theme, Mobile Sidebar, Tabs -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme setup
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            
+            const updateThemeIcon = () => {
+                const isDark = document.documentElement.classList.contains('dark');
+                themeToggleBtn.innerText = isDark ? 'light_mode' : 'dark_mode';
+            };
+            
+            updateThemeIcon();
+
+            themeToggleBtn.addEventListener('click', () => {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.theme = 'light';
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.theme = 'dark';
+                }
+                updateThemeIcon();
+                window.dispatchEvent(new Event('themeChanged'));
+            });
+
+            // Mobile Sidebar Toggles
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            const openBtn = document.getElementById('open-sidebar');
+            const closeBtn = document.getElementById('close-sidebar');
+
+            const toggleSidebar = (forceHide = false) => {
+                const isClosed = sidebar.classList.contains('-translate-x-full');
+                if (forceHide || !isClosed) {
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('opacity-0');
+                    setTimeout(() => overlay.classList.add('hidden'), 300);
+                } else {
+                    sidebar.classList.remove('-translate-x-full');
+                    overlay.classList.remove('hidden');
+                    // short reflow tick for transition
+                    setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                }
+            };
+
+            openBtn.addEventListener('click', () => toggleSidebar(false));
+            closeBtn.addEventListener('click', () => toggleSidebar(true));
+            overlay.addEventListener('click', () => toggleSidebar(true));
+
+            // Custom SPA Tab Routing with Hash support
+            const sections = document.querySelectorAll('.tab-section');
+            const tabs = document.querySelectorAll('.sidebar-tab');
+
+            const switchTab = (targetId, updateHash = true) => {
+                // Reset all tabs
+                tabs.forEach(t => {
+                    t.className = 'sidebar-tab flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-[#7d125e] dark:hover:text-[#9b2f77] transition-all';
+                });
+                
+                // Activate clicked tab
+                const activeTab = Array.from(tabs).find(t => t.getAttribute('data-target') === targetId);
+                if (activeTab) {
+                    activeTab.className = 'sidebar-tab flex items-center gap-3 px-4 py-3 bg-[#7d125e] text-white rounded-xl shadow-[0_0_15px_rgba(125,18,94,0.4)] transition-all';
+                }
+
+                // Reset sections
+                sections.forEach(sec => {
+                    if(sec.id === targetId) {
+                        sec.classList.remove('hidden');
+                        sec.classList.add('block');
+                    } else {
+                        sec.classList.remove('block');
+                        sec.classList.add('hidden');
+                    }
+                });
+
+                // Update Breadcrumb
+                const breadcrumbCurrent = document.getElementById('breadcrumb-current');
+                if (breadcrumbCurrent) {
+                    const label = activeTab ? activeTab.querySelector('span:not(.material-symbols-outlined)').innerText : 'Overview';
+                    breadcrumbCurrent.innerText = label;
+                }
+
+                // Update Hash without triggering hashchange listener again
+                if (updateHash) {
+                    window.location.hash = targetId;
+                }
+
+                // Hide sidebar on mobile
+                if(window.innerWidth < 768) toggleSidebar(true);
+            };
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    // Allow normal navigation (middle click, etc), but handle local click via JS
+                    const targetId = tab.getAttribute('data-target');
+                    switchTab(targetId);
+                });
+            });
+
+            // Handle Hash on Load
+            const initialHash = window.location.hash.replace('#', '');
+            if (initialHash && Array.from(sections).some(s => s.id === initialHash)) {
+                switchTab(initialHash, false);
+            }
+
+            // Handle Hash Change (Back/Forward buttons)
+            window.addEventListener('hashchange', () => {
+                const newHash = window.location.hash.replace('#', '');
+                if (newHash && Array.from(sections).some(s => s.id === newHash)) {
+                    switchTab(newHash, false);
+                }
+            });
+
+            // Status Update Logic
+            window.updateStatusColors = function(selectEl) {
+                const val = selectEl.value;
+                const baseClasses = "px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider outline-none cursor-pointer text-center w-full max-w-[150px] transition-colors border-none ring-0 ";
+                
+                const colors = {
+                    awaiting: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400',
+                    sourcing: 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400',
+                    qc: 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-400',
+                    completed: 'bg-green-500/10 text-green-500 dark:bg-green-500/20 dark:text-green-500'
+                };
+                
+                selectEl.className = baseClasses + (colors[val] || colors.awaiting);
+                if (window.filterRepairs) window.filterRepairs();
+            };
+
+            // Repairs Filter
+            window.filterRepairs = function() {
+                const val = document.getElementById('status-filter').value;
+                const rows = document.querySelectorAll('#repairs tbody tr');
+                rows.forEach(row => {
+                    if (val === 'all') {
+                        row.style.display = '';
+                    } else {
+                        const select = row.querySelector('select');
+                        row.style.display = (select && select.value === val) ? '' : 'none';
+                    }
+                });
+            };
+
+            // Inventory Filter
+            window.filterInventory = function() {
+                const category = document.getElementById('inventory-category').value;
+                const rows = document.querySelectorAll('#inventory tbody tr');
+                rows.forEach(row => {
+                    if (category === 'all') {
+                        row.style.display = '';
+                    } else {
+                        const cell = row.querySelector('td:nth-child(2)'); // Assuming Category is 2nd col
+                        row.style.display = (cell && cell.innerText.includes(category)) ? '' : 'none';
+                    }
+                });
+            };
+            
+
+
+            window.updateInvoiceStatus = function(selectEl) {
+                const val = selectEl.value;
+                const baseClasses = "px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider outline-none cursor-pointer text-center w-full max-w-[100px] transition-colors border-none ring-0 ";
+                
+                if (val === 'pending') {
+                    selectEl.className = baseClasses + "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400";
+                } else if (val === 'sent') {
+                    selectEl.className = baseClasses + "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400";
+                } else if (val === 'paid') {
+                    selectEl.className = baseClasses + "bg-green-500/10 text-green-500 dark:bg-green-500/20 dark:text-green-500";
+                }
+            };
+
+            // Invoice PDF Generator
+            window.generateInvoicePDF = function(btn, action = 'download') {
+                const row = btn.closest('tr');
+                const invoiceNum = row.cells[0].innerText;
+                const clientName = row.cells[1].innerText;
+                const issueDate = row.cells[2].innerText;
+                const descriptionText = row.cells[3].innerText;
+                const amount = row.cells[4].innerText;
+
+                const printDiv = document.createElement('div');
+                printDiv.style.padding = '40px';
+                printDiv.style.fontFamily = "'Plus Jakarta Sans', Arial, sans-serif";
+                printDiv.style.color = '#0f172a';
+                printDiv.style.backgroundColor = '#ffffff';
+                printDiv.innerHTML = 
+                    `<div style="display:flex; justify-content:space-between; border-bottom: 2px solid #7d125e; padding-bottom: 20px; border-bottom: 1px solid #e2e8f0; margin-bottom: 40px;">
+                        <div>
+                            <h1 style="color: #7d125e; font-size: 28px; margin: 0; font-weight: 800;"><img src="img/LOGO EN pur.png" alt="Logo" style="width: 100px; height: 50px;"></h1>
+                            <p style="font-size: 12px; color: #64748b; margin: 8px 0; line-height: 1.6;">Command Center HQ: Sheikh Zayed City<br>T: +20 100 000 0000<br>Billing Support: finance@zahratrade.com</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <h2 style="font-size: 24px; margin: 0; color: #0f172a; font-weight: 800; letter-spacing: 1px;">INVOICE</h2>
+                            <p style="font-size: 14px; font-weight: bold; margin: 8px 0; color: #334155;">#${invoiceNum}</p>
+                            <p style="font-size: 12px; color: #64748b; margin: 0;">Issued: ${issueDate}</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 40px;">
+                        <p style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: bold; letter-spacing: 1px;">Billed To:</p>
+                        <h3 style="font-size: 18px; margin: 8px 0; color: #0f172a;">${clientName}</h3>
+                        <p style="font-size: 12px; color: #64748b;">Premium B2B Service Contract</p>
+                    </div>
+
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 40px;">
+                        <thead>
+                            <tr style="background-color: #f8fafc; text-align: left; font-size: 12px; color: #64748b; text-transform: uppercase;">
+                                <th style="padding: 16px; border-bottom: 2px solid #7d125e;">Description</th>
+                                <th style="padding: 16px; border-bottom: 2px solid #7d125e; text-align: right;">Total Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 20px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px;">${descriptionText}</td>
+                                <td style="padding: 20px 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: bold; font-size: 14px;">EGP ${amount}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div style="text-align: right; font-size: 20px; margin-bottom: 60px;">
+                        <strong>Total Due: <span style="color: #7d125e;">EGP ${amount}</span></strong>
+                    </div>
+                    
+                    <div style="font-size: 10px; color: #94a3b8; text-align: center; border-top: 1px solid #f1f5f9; padding-top: 20px;">
+                        Thank you for trusting Zahra Medical fleet operations.<br>Please remit payment within 14 days to the central accounts portal.
+                    </div>`;
+                
+
+                document.body.appendChild(printDiv);
+                
+                const opt = {
+                    margin: 15,
+                    filename: `\${clientName.replace(/\\s+/g, '_')}_Invoice_\${invoiceNum}.pdf`,
+                    image: { type: 'jpeg', quality: 1 },
+                    html2canvas: { scale: 2, logging: false },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+
+                if (action === 'view') {
+                    html2pdf().set(opt).from(printDiv).outputPdf('blob').then((pdfBlob) => {
+                        window.open(URL.createObjectURL(pdfBlob), '_blank');
+                        document.body.removeChild(printDiv);
+                    });
+                } else {
+                    html2pdf().set(opt).from(printDiv).save().then(() => {
+                        document.body.removeChild(printDiv);
+                    });
+                }
+            };
+
+            // ── Global Search ──────────────────────────────────────────
+            const searchInput = document.getElementById('global-search');
+
+            searchInput.addEventListener('input', () => {
+                const q = searchInput.value.trim().toLowerCase();
+
+                // Helper: switch sidebar active state + show tab section
+                const switchTab = (targetId) => {
+                    document.querySelectorAll('.tab-section').forEach(s => s.classList.add('hidden'));
+                    document.getElementById(targetId).classList.remove('hidden');
+                    document.querySelectorAll('.sidebar-tab').forEach(link => {
+                        const isActive = link.dataset.target === targetId;
+                        link.classList.toggle('bg-[#7d125e]', isActive);
+                        link.classList.toggle('text-white', isActive);
+                        link.classList.toggle('shadow-[0_0_15px_rgba(125,18,94,0.4)]', isActive);
+                        link.classList.toggle('text-slate-600', !isActive);
+                        link.classList.toggle('dark:text-slate-400', !isActive);
+                    });
+                };
+
+                // Restore all rows when query cleared
+                if (!q) {
+                    document.querySelectorAll('#repairs tbody tr, #inventory tbody tr, #invoices tbody tr').forEach(r => r.style.display = '');
+                    document.querySelectorAll('#partners .partner-card').forEach(c => c.style.display = '');
+                    return;
+                }
+
+                let firstHitTab = null;
+
+                // Repairs
+                document.querySelectorAll('#repairs tbody tr').forEach(row => {
+                    const match = row.innerText.toLowerCase().includes(q);
+                    row.style.display = match ? '' : 'none';
+                    if (match && !firstHitTab) firstHitTab = 'repairs';
+                });
+
+                // Inventory
+                document.querySelectorAll('#inventory tbody tr').forEach(row => {
+                    const match = row.innerText.toLowerCase().includes(q);
+                    row.style.display = match ? '' : 'none';
+                    if (match && !firstHitTab) firstHitTab = 'inventory';
+                });
+
+                // Invoices
+                document.querySelectorAll('#invoices tbody tr').forEach(row => {
+                    const match = row.innerText.toLowerCase().includes(q);
+                    row.style.display = match ? '' : 'none';
+                    if (match && !firstHitTab) firstHitTab = 'invoices';
+                });
+
+                // Partners
+                document.querySelectorAll('#partners .partner-card').forEach(card => {
+                    const match = card.innerText.toLowerCase().includes(q);
+                    card.style.display = match ? '' : 'none';
+                    if (match && !firstHitTab) firstHitTab = 'partners';
+                });
+
+                if (firstHitTab) switchTab(firstHitTab);
+            });
+        });
+    </script>
+    <script src="js/admin-charts.js"></script>
+
+    <!-- ═══════ SLIDE-OVER: Ticket Manage Panel ═══════ -->
+    <div id="ticket-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[60] hidden transition-opacity duration-300 opacity-0" onclick="closeTicketPanel()"></div>
+    <aside id="ticket-panel" class="fixed top-0 right-0 h-full w-full max-w-md bg-white dark:bg-slate-900 shadow-2xl z-[70] transform translate-x-full transition-transform duration-300 ease-out flex flex-col">
+        <!-- Panel Header -->
+        <div class="flex items-center justify-between px-6 py-5 border-b border-slate-200 dark:border-slate-800 bg-gradient-to-r from-[#7d125e] to-[#9b2f77]">
+            <div>
+                <h2 class="text-white font-extrabold text-lg tracking-tight" id="panel-ticket-id">#REQ-XXXX</h2>
+                <p class="text-white/70 text-xs font-medium" id="panel-ticket-date">—</p>
+            </div>
+            <button onclick="closeTicketPanel()" class="material-symbols-outlined text-white/80 hover:text-white transition-colors">close</button>
+        </div>
+        <!-- Panel Body -->
+        <div class="flex-1 overflow-y-auto p-6 space-y-5">
+            <!-- Client Info -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-4">
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Client</p>
+                    <p class="font-bold text-slate-900 dark:text-white" id="panel-client">—</p>
+                    <div id="panel-contact" class="text-xs text-slate-500 dark:text-slate-400 mt-1 space-y-0.5"></div>
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-4">
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Mobile Phone</p>
+                    <a id="panel-phone-link" href="#" target="_blank" class="flex items-center gap-2 text-sm font-bold text-[#7d125e] hover:color-white">
+                        <span class="material-symbols-outlined text-base">chat</span>
+                        <span id="panel-phone-text">No phone set</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Equipment -->
+            <div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-4">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Equipment</p>
+                <p class="font-bold text-slate-900 dark:text-white" id="panel-equipment">—</p>
+                <p class="text-xs font-mono text-slate-500 mt-0.5" id="panel-serial">—</p>
+            </div>
+            <!-- Issue -->
+            <div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-4">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Reported Issue</p>
+                <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed" id="panel-issue">—</p>
+            </div>
+            <!-- SLA -->
+            <div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-4">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Maintenance / SLA Due Date</p>
+                <input type="date" id="panel-sla-date" class="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-700 dark:text-slate-200 outline-none focus:ring-2 focus:ring-[#7d125e]" />
+            </div>
+            <!-- Status Update -->
+            <div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-4">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3">Update Status</p>
+                <select id="panel-status-select" class="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-700 dark:text-slate-200 outline-none">
+                    <option value="awaiting">Awaiting Diagnosis</option>
+                    <option value="sourcing">Sourcing Parts</option>
+                    <option value="qc">Final QC</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+            <!-- Tech Notes -->
+            <div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-4">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Technician Notes</p>
+                <textarea rows="4" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-700 dark:text-slate-200 outline-none focus:ring-2 focus:ring-[#7d125e] resize-none" placeholder="Add internal notes…"></textarea>
+            </div>
+        </div>
+        <!-- Panel Footer -->
+        <div class="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex gap-3">
+            <button onclick="applyPanelStatus()" class="flex-1 bg-gradient-to-r from-[#7d125e] to-[#9b2f77] text-white py-2.5 rounded-xl font-bold text-sm hover:shadow-lg transition-all">Save Changes</button>
+            <button onclick="closeTicketPanel()" class="px-5 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold text-sm rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Cancel</button>
+        </div>
+    </aside>
+
+    <script>
+        // ── Ticket Slide-Over Panel ────────────────────────────────────
+        let _panelSourceRow = null;
+
+        window.openTicketPanel = function(btn) {
+            const row = btn.closest('tr');
+            _panelSourceRow = row;
+            const cells = row.querySelectorAll('td');
+
+            // Ticket ID + date
+            const idDiv = cells[0].querySelector('div:first-child');
+            const dateDiv = cells[0].querySelector('div:last-child');
+            document.getElementById('panel-ticket-id').textContent = idDiv ? idDiv.textContent.trim() : '—';
+            document.getElementById('panel-ticket-date').textContent = dateDiv ? dateDiv.textContent.trim() : '—';
+
+            // Client info
+            const clientDiv = cells[1].querySelector('div:first-child');
+            document.getElementById('panel-client').textContent = clientDiv ? clientDiv.textContent.trim() : '—';
+
+            // Contact & Phone
+            const contactDiv = cells[1].querySelector('div:last-child');
+            const contactEl = document.getElementById('panel-contact');
+            const phoneLink = document.getElementById('panel-phone-link');
+            const phoneText = document.getElementById('panel-phone-text');
+            contactEl.innerHTML = '';
+            phoneLink.href = '#';
+            phoneText.textContent = 'No phone set';
+            
+            if (contactDiv) {
+                const spans = contactDiv.querySelectorAll('span, a');
+                spans.forEach(s => {
+                    const text = s.textContent.trim();
+                    if (text.match(/\+?\d[\d\s-]{7,}/)) {
+                        phoneText.textContent = text;
+                        phoneLink.href = `https://wa.me/${text.replace(/\D/g,'')}`;
+                    } else {
+                        const p = document.createElement('p');
+                        p.textContent = text;
+                        contactEl.appendChild(p);
+                    }
+                });
+            }
+
+            // Equipment
+            const eqMain = cells[2].querySelector('div:first-child');
+            const eqSerial = cells[2].querySelector('div:last-child');
+            document.getElementById('panel-equipment').textContent = eqMain ? eqMain.textContent.trim() : '—';
+            document.getElementById('panel-serial').textContent = eqSerial ? eqSerial.textContent.trim() : '—';
+
+            // Issue
+            document.getElementById('panel-issue').textContent = cells[3].textContent.trim();
+
+            // SLA date
+            const slaSpan = cells[4].querySelector('span:last-child');
+            const slaText = slaSpan ? slaSpan.textContent.trim() : '';
+            // Try to parse existing date text into a date input value (YYYY-MM-DD)
+            const dateInput = document.getElementById('panel-sla-date');
+            const parsedDate = slaText ? new Date(slaText) : null;
+            if (parsedDate && !isNaN(parsedDate)) {
+                dateInput.value = parsedDate.toISOString().split('T')[0];
+            } else {
+                // Try parsing "Mar 28, 2026" style dates
+                const d = new Date(slaText.replace(/(\d+)(st|nd|rd|th)/, '$1'));
+                dateInput.value = (!isNaN(d)) ? d.toISOString().split('T')[0] : '';
+            }
+
+            // Current status
+            const statusSelect = cells[5].querySelector('select');
+            if (statusSelect) {
+                document.getElementById('panel-status-select').value = statusSelect.value;
+            }
+
+            // Open the panel
+            document.getElementById('ticket-overlay').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('ticket-overlay').classList.remove('opacity-0');
+                document.getElementById('ticket-panel').classList.remove('translate-x-full');
+            }, 10);
+        };
+
+        window.closeTicketPanel = function() {
+            document.getElementById('ticket-overlay').classList.add('opacity-0');
+            document.getElementById('ticket-panel').classList.add('translate-x-full');
+            setTimeout(() => {
+                document.getElementById('ticket-overlay').classList.add('hidden');
+            }, 300);
+            _panelSourceRow = null;
+        };
+
+        window.applyPanelStatus = function() {
+            if (!_panelSourceRow) return;
+            const newStatus = document.getElementById('panel-status-select').value;
+            const rowSelect = _panelSourceRow.querySelector('td:nth-child(6) select');
+            if (rowSelect) {
+                rowSelect.value = newStatus;
+                window.updateStatusColors(rowSelect);
+            }
+            // Update SLA date in the table row
+            const newDate = document.getElementById('panel-sla-date').value;
+            if (newDate) {
+                const slaCell = _panelSourceRow.cells[4];
+                const d = new Date(newDate + 'T00:00:00');
+                const opts = { month: 'short', day: 'numeric', year: 'numeric' };
+                const formatted = d.toLocaleDateString('en-US', opts);
+                // Check if overdue
+                const today = new Date(); today.setHours(0,0,0,0);
+                const isOverdue = d < today;
+                const bgClass = isOverdue ? 'bg-error/10 text-error border-error/20' : 'bg-success/10 text-success border-success/20';
+                const icon = isOverdue ? 'timer' : 'event_available';
+                slaCell.innerHTML = `
+                    <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md ${bgClass} inline-flex">
+                        <span class="material-symbols-outlined text-[14px]">${icon}</span>
+                        <span class="font-bold text-[11px] uppercase tracking-wider">${formatted}</span>
+                    </div>`;
+            }
+            // Update Phone removed - uneditable in panel per request
+            closeTicketPanel();
+        };
+    </script>
+
+    <!-- ═══════ MODAL: Add Partner ═══════ -->
+    <div id="add-partner-modal" class="hidden fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-[80] flex items-center justify-center p-4" onclick="if(event.target===this)this.classList.add('hidden')">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl w-full max-w-lg p-8">
+            <h2 class="text-xl font-extrabold text-slate-800 dark:text-white mb-6 flex items-center gap-2"><span class="material-symbols-outlined text-[#7d125e]">group_add</span> Add New Partner</h2>
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1 block">Clinic Name</label>
+                        <input id="partner-name" type="text" placeholder="e.g. Nova Laser Clinic" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-[#7d125e]">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1 block">Contact Person</label>
+                        <input id="partner-contact" type="text" placeholder="e.g. Dr. Ahmed Ali" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-[#7d125e]">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1 block">Phone</label>
+                        <input id="partner-phone" type="text" placeholder="+20 1XX XXX XXXX" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-[#7d125e]">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1 block">Location</label>
+                        <input id="partner-location" type="text" placeholder="e.g. Nasr City, EG" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-[#7d125e]">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1 block">SLA Tier</label>
+                    <select id="partner-sla" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-[#7d125e]">
+                        <option value="diamond">Diamond</option>
+                        <option value="standard">Standard</option>
+                        <option value="on-demand">On-Demand</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex gap-3 mt-6">
+                <button onclick="addPartnerToGrid()" class="flex-1 bg-gradient-to-r from-[#7d125e] to-[#9b2f77] text-white py-2.5 rounded-xl font-bold text-sm hover:shadow-lg transition-all">Add Partner</button>
+                <button onclick="document.getElementById('add-partner-modal').classList.add('hidden')" class="px-5 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold text-sm rounded-xl transition-colors">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ MODAL: New Invoice ═══════ -->
+    <div id="new-invoice-modal" class="hidden fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-[80] flex items-center justify-center p-4" onclick="if(event.target===this)this.classList.add('hidden')">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl w-full max-w-lg p-8">
+            <h2 class="text-xl font-extrabold text-slate-800 dark:text-white mb-6 flex items-center gap-2"><span class="material-symbols-outlined text-[#7d125e]">receipt_long</span> New Invoice</h2>
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1 block">Client Name</label>
+                        <input id="inv-client" type="text" placeholder="e.g. Apex Dermatology" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-[#7d125e]">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1 block">Amount (EGP)</label>
+                        <input id="inv-amount" type="number" min="0" placeholder="0" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-[#7d125e]">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1 block">Description</label>
+                    <input id="inv-description" type="text" placeholder="e.g. Laser calibration & cooling flush" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-[#7d125e]">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1 block">Issue Date</label>
+                    <input id="inv-date" type="date" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-[#7d125e]">
+                </div>
+            </div>
+            <div class="flex gap-3 mt-6">
+                <button onclick="addInvoiceToTable()" class="flex-1 bg-gradient-to-r from-[#7d125e] to-[#9b2f77] text-white py-2.5 rounded-xl font-bold text-sm hover:shadow-lg transition-all">Create Invoice</button>
+                <button onclick="document.getElementById('new-invoice-modal').classList.add('hidden')" class="px-5 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold text-sm rounded-xl transition-colors">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ── Inventory: adjustStock ─────────────────────────────────────
+        window.adjustStock = function(btn, delta) {
+            const td = btn.closest('td');
+            const input = td.querySelector('.stock-qty');
+            const newVal = Math.max(0, parseInt(input.value || 0) + delta);
+            input.value = newVal;
+            // update label
+            const label = td.querySelector('span');
+            if (newVal <= 3) {
+                label.className = 'text-error font-bold flex items-center gap-1';
+                label.innerHTML = `<span class="w-2 h-2 rounded-full bg-error"></span> ${newVal} Critical`;
+            } else if (newVal <= 10) {
+                label.className = 'text-amber-600 font-bold flex items-center gap-1';
+                label.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500"></span> ${newVal} Low`;
+            } else {
+                label.className = 'text-success font-bold flex items-center gap-1';
+                label.innerHTML = `<span class="w-2 h-2 rounded-full bg-success"></span> ${newVal} Available`;
+            }
+            // update low-stock badge on sidebar
+            const anyLow = Array.from(document.querySelectorAll('#inventory .stock-qty')).some(i => parseInt(i.value) <= 5);
+            document.getElementById('low-stock-badge').classList.toggle('hidden', !anyLow);
+        };
+
+        // ── Invoice: filter ────────────────────────────────────────────
+        const TODAY = new Date('2026-03-23');
+        const OVERDUE_DAYS = 14;
+
+        function isOverdue(row) {
+            const status = row.dataset.status;
+            if (status === 'paid') return false;
+            const issueDate = new Date(row.dataset.issueDate || row.dataset['issueDate'] || '');
+            if (isNaN(issueDate)) return false;
+            return (TODAY - issueDate) / 86400000 > OVERDUE_DAYS;
+        }
+
+        window.filterInvoices = function(filter) {
+            // button highlight
+            document.querySelectorAll('.inv-filter-btn').forEach(b => {
+                b.classList.remove('bg-[#7d125e]', 'text-white');
+                b.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
+            });
+            const active = document.getElementById(`inv-filter-${filter}`);
+            if (active) {
+                active.classList.add('bg-[#7d125e]', 'text-white');
+                active.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
+            }
+            document.querySelectorAll('#invoices tbody tr').forEach(row => {
+                let show = false;
+                if (filter === 'all') show = true;
+                else if (filter === 'overdue') show = isOverdue(row);
+                else show = row.dataset.status === filter;
+                row.style.display = show ? '' : 'none';
+                // Apply overdue ring for visible pending rows
+                if (show && isOverdue(row)) {
+                    row.classList.add('ring-1', 'ring-inset', 'ring-error/30', 'bg-error/5', 'dark:bg-error/10');
+                } else {
+                    row.classList.remove('ring-1', 'ring-inset', 'ring-error/30', 'bg-error/5', 'dark:bg-error/10');
+                }
+            });
+        };
+
+        // Run overdue detection on load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('#invoices tbody tr').forEach(row => {
+                if (isOverdue(row)) {
+                    row.classList.add('ring-1', 'ring-inset', 'ring-error/30', 'bg-error/5', 'dark:bg-error/10');
+                }
+            });
+            // Show low-stock badge if any item is critical/low
+            const anyLow = Array.from(document.querySelectorAll('#inventory .stock-qty')).some(i => parseInt(i.value) <= 5);
+            document.getElementById('low-stock-badge').classList.toggle('hidden', !anyLow);
+        });
+
+        // ── Add Partner to Grid ────────────────────────────────────────
+        window.addPartnerToGrid = function() {
+            const name = document.getElementById('partner-name').value.trim();
+            const contact = document.getElementById('partner-contact').value.trim();
+            const phone = document.getElementById('partner-phone').value.trim();
+            const location = document.getElementById('partner-location').value.trim();
+            const sla = document.getElementById('partner-sla').value;
+            if (!name) return;
+            const initials = name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase();
+            const slaLabel = sla === 'diamond' ? '<span class="flex items-center gap-1 text-success font-bold"><span class="material-symbols-outlined text-[14px]">verified</span> Diamond SLA</span>'
+                           : sla === 'standard' ? '<span class="flex items-center gap-1 text-blue-500 font-bold"><span class="material-symbols-outlined text-[14px]">shield</span> Standard SLA</span>'
+                           : '<span class="flex items-center gap-1 text-slate-400 font-bold"><span class="material-symbols-outlined text-[14px]">cancel</span> On-Demand</span>';
+            const card = document.createElement('div');
+            card.className = 'partner-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row gap-6 hover:shadow-md transition-all';
+            card.innerHTML = `
+                <div class="w-16 h-16 rounded-xl bg-[#7d125e]/10 text-[#7d125e] flex items-center justify-center font-bold text-2xl shrink-0">${initials}</div>
+                <div class="flex-1">
+                    <h3 class="font-bold text-lg text-slate-800 dark:text-white mb-1">${name}</h3>
+                    <div class="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span> ${location || 'N/A'}</span>
+                        ${slaLabel}
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm">
+                            <div class="font-semibold text-slate-700 dark:text-slate-300">${contact || '—'}</div>
+                            <div class="text-xs text-slate-500">${phone || '—'}</div>
+                        </div>
+                    </div>
+                </div>`;
+            document.querySelector('#partners .grid').appendChild(card);
+            document.getElementById('add-partner-modal').classList.add('hidden');
+            ['partner-name','partner-contact','partner-phone','partner-location'].forEach(id => document.getElementById(id).value = '');
+        };
+
+        // ── New Invoice to Table ───────────────────────────────────────
+        let _invCounter = 43;
+        window.addInvoiceToTable = function() {
+            const client = document.getElementById('inv-client').value.trim();
+            const amount = document.getElementById('inv-amount').value.trim();
+            const desc = document.getElementById('inv-description').value.trim();
+            const date = document.getElementById('inv-date').value;
+            if (!client || !amount) return;
+            const num = `INV-2026-00${_invCounter++}`;
+            const displayDate = date ? new Date(date).toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'}) : '—';
+            const tbody = document.querySelector('#invoices tbody');
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/40';
+            tr.dataset.status = 'pending';
+            tr.dataset.issueDate = date;
+            tr.innerHTML = `
+                <td class="px-6 py-4 font-bold text-slate-900 dark:text-white">${num}</td>
+                <td class="px-6 py-4 font-semibold">${client}</td>
+                <td class="px-6 py-4 text-slate-500 text-xs">${displayDate}</td>
+                <td class="px-6 py-4 text-xs font-semibold">${desc || '—'}</td>
+                <td class="px-6 py-4 font-mono font-bold">${parseFloat(amount).toLocaleString()}</td>
+                <td class="px-6 py-4">
+                    <select onchange="window.updateInvoiceStatus(this)" class="px-3 py-1 bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400 rounded-md text-[10px] font-bold uppercase tracking-wider outline-none cursor-pointer text-center w-full max-w-[100px] transition-colors border-none ring-0">
+                        <option value="pending" selected>Pending</option>
+                        <option value="sent">Sent</option>
+                        <option value="paid">Paid</option>
+                    </select>
+                </td>
+                <td class="px-6 py-4 text-right whitespace-nowrap">
+                    <button onclick="window.generateInvoicePDF(this,'view')" class="text-slate-400 hover:text-[#7d125e] transition-colors mr-2" title="View"><span class="material-symbols-outlined">visibility</span></button>
+                    <button onclick="window.generateInvoicePDF(this,'download')" class="text-slate-400 hover:text-[#7d125e] transition-colors" title="Download"><span class="material-symbols-outlined">download</span></button>
+                </td>`;
+            tbody.prepend(tr);
+            document.getElementById('new-invoice-modal').classList.add('hidden');
+            ['inv-client','inv-amount','inv-description','inv-date'].forEach(id => document.getElementById(id).value = '');
+        };
+    </script>
+
+    <!-- ═══════ Notification Drawer ═══════ -->
+    <div id="notif-overlay" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[70]" onclick="closeNotifDrawer()"></div>
+    <div id="notif-drawer" class="fixed top-0 right-0 w-full max-w-md h-screen bg-white dark:bg-slate-950 shadow-2xl z-[75] translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="px-6 py-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <h2 class="text-lg font-extrabold text-slate-800 dark:text-white flex items-center gap-2"><span class="material-symbols-outlined text-[#7d125e]">notifications_active</span> Notifications</h2>
+            <button onclick="closeNotifDrawer()" class="material-symbols-outlined text-slate-400 hover:text-error transition-colors">close</button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-6 space-y-6" id="notif-content"></div>
+    </div>
+
+    <!-- ═══════ Partner Detail Drawer ═══════ -->
+    <div id="partner-detail-overlay" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[70]" onclick="closePartnerDetail()"></div>
+    <div id="partner-detail-drawer" class="fixed top-0 right-0 w-full max-w-lg h-screen bg-white dark:bg-slate-950 shadow-2xl z-[75] translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="px-6 py-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <h2 class="text-lg font-extrabold text-slate-800 dark:text-white flex items-center gap-2"><span class="material-symbols-outlined text-[#7d125e]">business</span> Partner Details</h2>
+            <button onclick="closePartnerDetail()" class="material-symbols-outlined text-slate-400 hover:text-error transition-colors">close</button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-6" id="partner-detail-content"></div>
+    </div>
+
+    <script>
+        // ── Close helpers ──────────────────────────────────────────
+        function closeNotifDrawer() {
+            document.getElementById('notif-drawer').classList.add('translate-x-full');
+            document.getElementById('notif-overlay').classList.add('hidden');
+        }
+        function closePartnerDetail() {
+            document.getElementById('partner-detail-drawer').classList.add('translate-x-full');
+            document.getElementById('partner-detail-overlay').classList.add('hidden');
+        }
+
+        // ── Breadcrumb sync ────────────────────────────────────────
+        const tabLabels = { overview:'Overview', repairs:'Active Repairs', partners:'Clinic Partners', inventory:'Inventory DB', invoices:'Invoices' };
+        const origSidebarClick = null;
+        document.querySelectorAll('.sidebar-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.target;
+                if (tabLabels[target]) {
+                    document.getElementById('breadcrumb-current').textContent = tabLabels[target];
+                }
+            });
+        });
+
+        // ── Notification builder ───────────────────────────────────
+        function buildNotifications() {
+            const container = document.getElementById('notif-content');
+            const alerts = [];
+            // Overdue repairs (SLA)
+            document.querySelectorAll('#repairs tbody tr').forEach(row => {
+                const slaCell = row.cells[4];
+                if (slaCell && slaCell.textContent.includes('Overdue')) {
+                    const ticketId = row.cells[0]?.querySelector('.font-bold')?.textContent || 'Repair';
+                    alerts.push({ type: 'error', icon: 'warning', title: `${ticketId} — SLA Overdue`, desc: 'Repair has exceeded its SLA deadline.' });
+                }
+            });
+            // Low stock
+            document.querySelectorAll('#inventory .stock-qty').forEach(input => {
+                const val = parseInt(input.value);
+                if (val <= 5) {
+                    const name = input.closest('tr')?.cells[0]?.textContent?.trim()?.split('\n')[0] || 'Item';
+                    alerts.push({ type: 'warning', icon: 'inventory_2', title: `Low Stock: ${name}`, desc: `Only ${val} units remaining.` });
+                }
+            });
+            // Unpaid invoices
+            document.querySelectorAll('#invoices tbody tr').forEach(row => {
+                if (row.dataset.status === 'pending') {
+                    const inv = row.cells[0]?.textContent?.trim() || 'Invoice';
+                    alerts.push({ type: 'info', icon: 'receipt_long', title: `${inv} — Unpaid`, desc: 'Invoice is still pending payment.' });
+                }
+            });
+            if (alerts.length === 0) {
+                container.innerHTML = '<div class="text-center text-slate-400 py-12"><span class="material-symbols-outlined text-5xl mb-3 block">check_circle</span><p class="font-bold">All clear!</p><p class="text-sm">No pending alerts.</p></div>';
+                return;
+            }
+            const colorMap = { error: 'bg-error/10 border-error/30 text-error', warning: 'bg-amber-50 dark:bg-amber-900/20 border-amber-300 dark:border-amber-700 text-amber-700', info: 'bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-700 text-blue-700' };
+            container.innerHTML = alerts.map(a => `
+                <div class="flex gap-3 p-4 rounded-xl border ${colorMap[a.type]}">
+                    <span class="material-symbols-outlined shrink-0">${a.icon}</span>
+                    <div><p class="font-bold text-sm">${a.title}</p><p class="text-xs opacity-80 mt-0.5">${a.desc}</p></div>
+                </div>`).join('');
+        }
+        // Rebuild on open
+        const origBellClick = document.getElementById('bell-btn').onclick;
+        document.getElementById('bell-btn').onclick = function() {
+            buildNotifications();
+            document.getElementById('notif-drawer').classList.remove('translate-x-full');
+            document.getElementById('notif-overlay').classList.remove('hidden');
+        };
+
+        // ── Kanban toggle ──────────────────────────────────────────
+        let kanbanVisible = false;
+        window.toggleKanban = function() {
+            kanbanVisible = !kanbanVisible;
+            document.getElementById('kanban-board').classList.toggle('hidden', !kanbanVisible);
+            document.getElementById('repairs-table-wrap').classList.toggle('hidden', kanbanVisible);
+            if (kanbanVisible) populateKanban();
+        };
+        function populateKanban() {
+            const cols = { awaiting: [], sourcing: [], qc: [], completed: [] };
+            document.querySelectorAll('#repairs tbody tr').forEach(row => {
+                const select = row.querySelector('select');
+                if (!select) return;
+                const status = select.value;
+                const ticketId = row.cells[0]?.querySelector('.font-bold')?.textContent || '';
+                const clinic = row.cells[1]?.querySelector('.font-bold')?.textContent || '';
+                const equipment = row.cells[2]?.querySelector('.font-bold')?.textContent || '';
+                const key = (status === 'awaiting') ? 'awaiting' : (status === 'sourcing') ? 'sourcing' : (status === 'qc') ? 'qc' : 'completed';
+                cols[key].push({ ticketId, clinic, equipment });
+            });
+            Object.keys(cols).forEach(key => {
+                const container = document.getElementById(`kanban-${key}`);
+                if (!container) return;
+                container.innerHTML = cols[key].length === 0 ? '<p class="text-xs text-slate-400 italic">No tickets</p>' :
+                    cols[key].map(t => `<div class="bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <p class="text-xs font-bold text-[#7d125e]">${t.ticketId}</p>
+                        <p class="text-sm font-semibold text-slate-800 dark:text-white mt-1">${t.clinic}</p>
+                        <p class="text-[10px] text-slate-500 mt-0.5">${t.equipment}</p>
+                    </div>`).join('');
+            });
+        }
+
+        // ── Inventory category filter ──────────────────────────────
+        window.filterInventoryCategory = function() {
+            const val = document.getElementById('inv-category-filter').value;
+            document.querySelectorAll('#inventory tbody tr').forEach(row => {
+                const cat = row.cells[1]?.textContent?.trim() || '';
+                row.style.display = (val === 'all' || cat === val) ? '' : 'none';
+            });
+        };
+
+        // ── Partner detail drawer ──────────────────────────────────
+        document.addEventListener('click', function(e) {
+            const card = e.target.closest('.partner-card');
+            if (!card) return;
+            // extract data from card
+            const name = card.querySelector('h3')?.textContent || '—';
+            const locationEl = card.querySelector('.flex.items-center.gap-4');
+            const locText = locationEl ? locationEl.textContent.trim() : '';
+            const contactName = card.querySelectorAll('.text-sm .font-semibold')[0]?.textContent || '—';
+            const phone = card.querySelectorAll('.text-xs.text-slate-500')[0]?.textContent || '—';
+            const slaEl = card.querySelector('.text-success, .text-blue-500, .text-slate-400');
+            const sla = slaEl ? slaEl.textContent.trim() : '—';
+
+            const content = document.getElementById('partner-detail-content');
+            content.innerHTML = `
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-16 h-16 rounded-xl bg-[#7d125e]/10 text-[#7d125e] flex items-center justify-center font-bold text-2xl">${name.split(' ').map(w=>w[0]).join('').substring(0,2)}</div>
+                    <div>
+                        <h3 class="font-extrabold text-xl text-slate-800 dark:text-white">${name}</h3>
+                        <p class="text-xs text-slate-500">${locText}</p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl"><span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Contact</span><span class="font-semibold text-slate-800 dark:text-white">${contactName}</span></div>
+                    <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl"><span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Phone</span><span class="font-semibold text-slate-800 dark:text-white">${phone}</span></div>
+                    <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl"><span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">SLA Tier</span><span class="font-semibold text-slate-800 dark:text-white">${sla}</span></div>
+                </div>
+                <div class="mt-8">
+                    <h4 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3">Linked Services</h4>
+                    <p class="text-sm text-slate-500 italic">No linked tickets in current session.</p>
+                </div>`;
+            document.getElementById('partner-detail-drawer').classList.remove('translate-x-full');
+            document.getElementById('partner-detail-overlay').classList.remove('hidden');
+        });
+    </script>
+
+    <!-- ═══════ Add Stock Modal ═══════ -->
+    <div id="add-stock-modal" class="hidden fixed inset-0 z-[80] flex items-center justify-center">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="document.getElementById('add-stock-modal').classList.add('hidden')"></div>
+        <div class="relative bg-white dark:bg-slate-950 rounded-2xl shadow-2xl w-full max-w-lg mx-4 p-8">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-extrabold text-slate-800 dark:text-white flex items-center gap-2"><span class="material-symbols-outlined text-[#7d125e]">inventory_2</span> Add Stock Item</h2>
+                <button onclick="document.getElementById('add-stock-modal').classList.add('hidden')" class="material-symbols-outlined text-slate-400 hover:text-error transition-colors">close</button>
+            </div>
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">SKU Code</label>
+                        <input id="stock-sku" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#7d125e]" placeholder="e.g. PRB-4D-GE" /></div>
+                    <div><label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Item Name</label>
+                        <input id="stock-name" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#7d125e]" placeholder="e.g. GE Voluson 4D Probe" /></div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Category</label>
+                        <select id="stock-category" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#7d125e] appearance-none">
+                            <option>Sonar Optics</option><option>Laser Consumables</option>
+                        </select></div>
+                    <div><label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Quantity</label>
+                        <input id="stock-qty-input" type="number" min="0" value="1" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#7d125e]" /></div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Unit Price (EGP)</label>
+                        <input id="stock-price" type="number" min="0" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#7d125e]" placeholder="0" /></div>
+                    <div><label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Warehouse Location</label>
+                        <input id="stock-location" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#7d125e]" placeholder="e.g. Shelf A-12 (Main HQ)" /></div>
+                </div>
+                <button onclick="addStockItem()" class="w-full py-3 bg-gradient-to-r from-[#7d125e] to-[#9b2f77] text-white rounded-xl font-bold hover:shadow-lg transition-all mt-2">Add to Inventory</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ New Booking Modal ═══════ -->
+    <div id="new-booking-modal" class="hidden fixed inset-0 z-[80] flex items-center justify-center">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="document.getElementById('new-booking-modal').classList.add('hidden')"></div>
+        <div class="relative bg-white dark:bg-slate-950 rounded-2xl shadow-2xl w-full max-w-lg mx-4 p-8">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-extrabold text-slate-800 dark:text-white flex items-center gap-2"><span class="material-symbols-outlined text-[#7d125e]">build</span> New Booking</h2>
+                <button onclick="document.getElementById('new-booking-modal').classList.add('hidden')" class="material-symbols-outlined text-slate-400 hover:text-error transition-colors">close</button>
+            </div>
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Clinic Name</label>
+                        <input id="bk-clinic" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#7d125e]" placeholder="e.g. Apex Dermatology" /></div>
+                    <div><label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Contact Person</label>
+                        <input id="bk-contact" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#7d125e]" placeholder="Dr. Sarah Jenkins" /></div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Equipment</label>
+                        <input id="bk-equipment" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#7d125e]" placeholder="e.g. Candela GentleMax" /></div>
+                    <div><label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Serial No.</label>
+                        <input id="bk-serial" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#7d125e]" placeholder="SN-XXXX" /></div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Issue Description</label>
+                        <textarea id="bk-issue" rows="3" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#7d125e] resize-none" placeholder="Describe the issue..."></textarea></div>
+                    <div><label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Phone Number</label>
+                        <input id="bk-phone" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#7d125e]" placeholder="+20 1XX XXX XXXX" /></div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">SLA Due Date</label>
+                        <input id="bk-sla" type="date" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#7d125e]" /></div>
+                    <div><label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">Initial Status</label>
+                        <select id="bk-status" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-[#7d125e] appearance-none">
+                            <option value="awaiting">Awaiting Diagnosis</option>
+                            <option value="sourcing">Sourcing Parts</option>
+                            <option value="qc">Final QC</option>
+                        </select></div>
+                </div>
+                <button onclick="addNewBooking()" class="w-full py-3 bg-gradient-to-r from-[#7d125e] to-[#9b2f77] text-white rounded-xl font-bold hover:shadow-lg transition-all mt-2">Create Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ── Add Stock Item ──────────────────────────────────────────
+        window.addStockItem = function() {
+            const sku = document.getElementById('stock-sku').value.trim();
+            const name = document.getElementById('stock-name').value.trim();
+            const cat = document.getElementById('stock-category').value;
+            const qty = parseInt(document.getElementById('stock-qty-input').value) || 0;
+            const price = document.getElementById('stock-price').value.trim();
+            const loc = document.getElementById('stock-location').value.trim();
+            if (!sku || !name) return alert('Please fill SKU and Item Name.');
+            const isLow = qty <= 5;
+            const statusColor = isLow ? 'text-error' : 'text-success';
+            const statusDot = isLow ? 'bg-error' : 'bg-success';
+            const statusLabel = isLow ? 'Critical' : 'Available';
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/40';
+            tr.innerHTML = `
+                <td class="px-6 py-4 font-bold text-slate-900 dark:text-white">${sku}<br><span class="text-[10px] text-slate-500 font-normal">${name}</span></td>
+                <td class="px-6 py-4">${cat}</td>
+                <td class="px-6 py-4">
+                    <span class="${statusColor} font-bold flex items-center gap-1"><span class="w-2 h-2 rounded-full ${statusDot}"></span> ${qty} ${statusLabel}</span>
+                    <div class="flex items-center gap-1 mt-2">
+                        <button onclick="adjustStock(this,-1)" class="w-6 h-6 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center">−</button>
+                        <input type="number" value="${qty}" min="0" class="stock-qty w-14 text-center text-sm font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md py-0.5 outline-none focus:ring-1 focus:ring-[#7d125e]">
+                        <button onclick="adjustStock(this,1)" class="w-6 h-6 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center">+</button>
+                    </div>
+                </td>
+                <td class="px-6 py-4 font-mono">${parseInt(price).toLocaleString()}</td>
+                <td class="px-6 py-4">${loc}</td>`;
+            document.querySelector('#inventory tbody').prepend(tr);
+            document.getElementById('add-stock-modal').classList.add('hidden');
+            ['stock-sku','stock-name','stock-price','stock-location'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('stock-qty-input').value = '1';
+        };
+
+        // ── Add New Booking ─────────────────────────────────────────
+        window.addNewBooking = function() {
+            const clinic = document.getElementById('bk-clinic').value.trim();
+            const contact = document.getElementById('bk-contact').value.trim();
+            const equip = document.getElementById('bk-equipment').value.trim();
+            const serial = document.getElementById('bk-serial').value.trim();
+            const issue = document.getElementById('bk-issue').value.trim();
+            const sla = document.getElementById('bk-sla').value;
+            const status = document.getElementById('bk-status').value;
+            const phone = document.getElementById('bk-phone').value.trim();
+            if (!clinic || !equip) return alert('Please fill Clinic and Equipment.');
+
+            // Generate ticket ID
+            const ticketNum = Math.floor(8900 + Math.random() * 100);
+            const ticketId = `#REQ-${ticketNum}`;
+            const now = new Date();
+            const timeStr = now.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+            // SLA display
+            let slaHtml = '<span class="text-slate-400 text-xs">—</span>';
+            if (sla) {
+                const d = new Date(sla + 'T00:00:00');
+                const formatted = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                const today = new Date(); today.setHours(0,0,0,0);
+                const isOverdue = d < today;
+                const cls = isOverdue ? 'bg-error/10 text-error border-error/20' : 'bg-success/10 text-success border-success/20';
+                const icon = isOverdue ? 'timer' : 'event_available';
+                slaHtml = `<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md ${cls} inline-flex"><span class="material-symbols-outlined text-[14px]">${icon}</span><span class="font-bold text-[11px] uppercase tracking-wider">${formatted}</span></div>`;
+            }
+
+            // Status color map
+            const statusColors = {
+                awaiting: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400',
+                sourcing: 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400',
+                qc: 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-400'
+            };
+            const statusLabels = { awaiting: 'Awaiting Diagnosis', sourcing: 'Sourcing Parts', qc: 'Final QC', completed: 'Completed' };
+
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors';
+            tr.innerHTML = `
+                <td class="px-6 py-4">
+                    <div class="font-bold text-slate-900 dark:text-white">${ticketId}</div>
+                    <div class="text-[10px] text-slate-500 mt-0.5">Today, ${timeStr}</div>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="font-bold">${clinic}</div>
+                    <div class="text-[11px] text-slate-500 mt-1 flex flex-col gap-0.5">
+                        <span class="font-semibold">${contact}</span>
+                        ${phone ? `<a href="https://wa.me/${phone.replace(/\D/g,'')}" target="_blank" class="text-[#7d125e] hover:underline flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">chat</span> ${phone}</a>` : ''}
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="font-semibold">${equip}</div>
+                    <div class="text-[10px] font-mono text-slate-500 mt-0.5">${serial || '—'}</div>
+                </td>
+                <td class="px-6 py-4 text-xs leading-relaxed max-w-[250px]">${issue || '—'}</td>
+                <td class="px-6 py-4">${slaHtml}</td>
+                <td class="px-6 py-4">
+                    <select onchange="window.updateStatusColors(this)" class="px-3 py-1 ${statusColors[status] || statusColors.awaiting} rounded-md text-[10px] font-bold uppercase tracking-wider outline-none cursor-pointer text-center w-full max-w-[150px] transition-colors border-none ring-0">
+                        <option value="awaiting" ${status==='awaiting'?'selected':''}>Awaiting Diagnosis</option>
+                        <option value="sourcing" ${status==='sourcing'?'selected':''}>Sourcing Parts</option>
+                        <option value="qc" ${status==='qc'?'selected':''}>Final QC</option>
+                        <option value="completed" ${status==='completed'?'selected':''}>Completed</option>
+                    </select>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <button onclick="openTicketPanel(this)" class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-[#7d125e] dark:text-[#9b2f77] font-bold text-xs hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Manage</button>
+                </td>`;
+            document.querySelector('#repairs tbody').prepend(tr);
+            document.getElementById('new-booking-modal').classList.add('hidden');
+            ['bk-clinic','bk-contact','bk-phone','bk-equipment','bk-serial','bk-issue','bk-sla'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+        };
+    </script>
+    <script>
+        function exportRepairsToCSV() {
+            const section = document.getElementById('repairs');
+            const tableBody = section ? section.querySelector('tbody') : null;
+            if (!tableBody) return;
+            
+            const rows = tableBody.querySelectorAll('tr');
+            let csv = 'Ticket ID,Date,Clinic,Contact Name,Email,Phone,Equipment,Serial Number,Status,SLA Date,Issue\n';
+            
+            rows.forEach(row => {
+                if (row.style.display === 'none') return;
+
+                const cells = row.querySelectorAll('td');
+                if (cells.length < 6) return;
+
+                // Extract Ticket ID & Time
+                const ticketId = (cells[0].querySelector('.font-bold') || cells[0]).innerText.trim();
+                const ticketDate = (cells[0].querySelector('div:last-child') || {innerText:''}).innerText.trim();
+                
+                // Extract Clinic Info
+                const clinic = (cells[1].querySelector('.font-bold') || cells[1].firstChild).textContent.trim();
+                const contactSpans = cells[1].querySelectorAll('span');
+                const contactName = contactSpans[0] ? contactSpans[0].innerText.trim() : '';
+                const contactEmail = contactSpans[1] ? contactSpans[1].innerText.trim() : '';
+                const contactPhone = contactSpans[2] ? contactSpans[2].innerText.trim() : '';
+                
+                // Extract Equipment & S/N
+                const equipment = (cells[2].querySelector('.font-semibold') || cells[2].firstChild).textContent.trim();
+                const serial = (cells[2].querySelector('.font-mono') || {innerText:''}).innerText.trim();
+                
+                // Extract Issue
+                const issue = cells[3].innerText.trim().replace(/"/g, '""');
+                
+                // Extract SLA Date
+                const slaEl = cells[4].querySelector('span.font-bold');
+                const sla = slaEl ? slaEl.innerText.trim() : cells[4].innerText.trim();
+                
+                // Extract Status
+                const statusSelect = cells[5].querySelector('select');
+                const status = statusSelect ? statusSelect.options[statusSelect.selectedIndex].text : 'Unknown';
+                
+                csv += `"${ticketId}","${ticketDate}","${clinic}","${contactName}","${contactEmail}","${contactPhone}","${equipment}","${serial}","${status}","${sla}","${issue}"\n`;
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', `Zahra_Repairs_Full_${new Date().toISOString().split('T')[0]}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>

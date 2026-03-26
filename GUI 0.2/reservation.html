@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Zahra Medical - Precision Maintenance and Bespoke Care for medical and aesthetic equipment." />
+    <meta property="og:title" content="Zahra Medical" />
+    <meta property="og:description" content="Precision Maintenance and Bespoke Care." />
+    <meta property="og:image" content="img/LOGO EN pur.png" />
+    <meta property="og:url" content="https://zahratrade.com" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7d125e" />
+    <title>Book Maintenance | Zahra Medical</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <script src="js/tailwind-config.js"></script>
+    <link href="css/global.css" rel="stylesheet" />
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/preloader.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body class="bg-background text-on-surface">
+    <div id="site-header-container"></div>
+    <main class="pt-32 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
+        <!-- Hero Header -->
+        <header class="mb-16 text-center md:text-left">
+            <span class="text-[#7d125e] font-bold uppercase tracking-[0.2em] text-xs mb-4 block">Service
+                Excellence</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-on-surface leading-tight max-w-3xl">
+                Book Maintenance or Repair Service.
+            </h1>
+            <p class="mt-6 text-on-surface-variant text-lg max-w-2xl leading-relaxed">
+                Ensure your clinical operations never miss a beat. Schedule precision maintenance with our specialized
+                engineering team today.
+            </p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <!-- Form Section -->
+            <div class="lg:col-span-8">
+                <div
+                    class="bg-surface-container-lowest p-8 md:p-12 rounded-2xl shadow-sm border border-outline-variant/15">
+                    <!-- Step Progress Bar -->
+                    <div class="flex items-center justify-between mb-10 relative">
+                        <div class="absolute top-5 left-0 right-0 h-0.5 bg-slate-200"><div id="progress-fill" class="h-full bg-[#7d125e] transition-all duration-500" style="width:0%"></div></div>
+                        <div class="step-indicator flex flex-col items-center z-10" data-step="1">
+                            <div id="step-dot-1" class="w-10 h-10 rounded-full bg-[#7d125e] text-white flex items-center justify-center font-bold text-sm shadow-md">1</div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest mt-2 text-[#7d125e]">Device</span>
+                        </div>
+                        <div class="step-indicator flex flex-col items-center z-10" data-step="2">
+                            <div id="step-dot-2" class="w-10 h-10 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-sm">2</div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest mt-2 text-slate-400">Issue</span>
+                        </div>
+                        <div class="step-indicator flex flex-col items-center z-10" data-step="3">
+                            <div id="step-dot-3" class="w-10 h-10 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-sm">3</div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest mt-2 text-slate-400">Schedule</span>
+                        </div>
+                        <div class="step-indicator flex flex-col items-center z-10" data-step="4">
+                            <div id="step-dot-4" class="w-10 h-10 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-sm">4</div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest mt-2 text-slate-400">Confirm</span>
+                        </div>
+                    </div>
+
+                    <form id="wizard-form" class="relative overflow-hidden">
+                        <!-- Step 1: Device Info -->
+                        <div id="step-1" class="wizard-step">
+                            <h2 class="text-2xl font-extrabold text-on-surface mb-6">Device Information</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="space-y-2">
+                                    <label class="text-sm font-bold text-on-surface-variant px-1" for="clinicName">Clinic Name</label>
+                                    <input required id="clinicName" name="clinicName"
+                                        class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-[#9b2f77]/40 rounded-lg p-4 text-on-surface placeholder:text-slate-400 transition-all"
+                                        placeholder="e.g. Zahra Dental Center" type="text" minlength="3"/>
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-sm font-bold text-on-surface-variant px-1" for="deviceModel">Device Model</label>
+                                    <input required id="deviceModel" name="deviceModel"
+                                        class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-[#9b2f77]/40 rounded-lg p-4 text-on-surface placeholder:text-slate-400 transition-all"
+                                        placeholder="e.g. MRI-5000 / Laser-X" type="text" minlength="3"/>
+                                </div>
+                                <div class="space-y-2 md:col-span-2">
+                                    <label class="text-sm font-bold text-on-surface-variant px-1" for="mobilePhone">Contact Mobile Phone</label>
+                                    <input required id="mobilePhone" name="mobilePhone"
+                                        class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-[#9b2f77]/40 rounded-lg p-4 text-on-surface placeholder:text-slate-400 transition-all"
+                                        placeholder="e.g. +20 1XX XXX XXXX" type="tel"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Issue Description -->
+                        <div id="step-2" class="wizard-step hidden">
+                            <h2 class="text-2xl font-extrabold text-on-surface mb-6">Describe the Issue</h2>
+                            <div class="space-y-8">
+                                <div class="space-y-2">
+                                    <label class="text-sm font-bold text-on-surface-variant px-1" for="issueDescription">Issue Description</label>
+                                    <textarea required id="issueDescription" name="issueDescription"
+                                        class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-[#9b2f77]/40 rounded-lg p-4 text-on-surface placeholder:text-slate-400 transition-all"
+                                        placeholder="Briefly describe the equipment status or specific fault codes..."
+                                        rows="4"></textarea>
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-sm font-bold text-on-surface-variant px-1" for="urgencyLevel">Urgency Level</label>
+                                    <select required id="urgencyLevel" name="urgencyLevel"
+                                        class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-[#9b2f77]/40 rounded-lg p-4 text-on-surface transition-all appearance-none">
+                                        <option>Standard Maintenance</option>
+                                        <option>Priority Repair</option>
+                                        <option>Emergency (Critical Failure)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Schedule -->
+                        <div id="step-3" class="wizard-step hidden">
+                            <h2 class="text-2xl font-extrabold text-on-surface mb-6">Choose a Date & Time</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <!-- Calendar -->
+                                <div>
+                                    <div class="bg-surface-container-low rounded-xl p-4">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <button type="button" onclick="calNav(-1)" class="material-symbols-outlined text-[#7d125e] hover:bg-[#7d125e]/10 rounded-lg p-1 transition-colors">chevron_left</button>
+                                            <span id="cal-month-label" class="font-bold text-on-surface text-sm"></span>
+                                            <button type="button" onclick="calNav(1)" class="material-symbols-outlined text-[#7d125e] hover:bg-[#7d125e]/10 rounded-lg p-1 transition-colors">chevron_right</button>
+                                        </div>
+                                        <div class="grid grid-cols-7 text-center text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">
+                                            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                                        </div>
+                                        <div id="cal-grid" class="grid grid-cols-7 gap-1 text-center text-sm"></div>
+                                    </div>
+                                    <input type="hidden" id="selectedDate" name="selectedDate" />
+                                </div>
+                                <!-- Time Slots -->
+                                <div>
+                                    <p class="text-sm font-bold text-on-surface-variant mb-3">Select Time Slot</p>
+                                    <div class="grid grid-cols-2 gap-2" id="time-slots">
+                                        <button type="button" data-time="09:00" class="time-slot-btn px-4 py-3 rounded-xl bg-surface-container-low text-on-surface-variant font-semibold text-sm hover:bg-[#7d125e]/10 hover:text-[#7d125e] transition-all">09:00 AM</button>
+                                        <button type="button" data-time="10:00" class="time-slot-btn px-4 py-3 rounded-xl bg-surface-container-low text-on-surface-variant font-semibold text-sm hover:bg-[#7d125e]/10 hover:text-[#7d125e] transition-all">10:00 AM</button>
+                                        <button type="button" data-time="11:00" class="time-slot-btn px-4 py-3 rounded-xl bg-surface-container-low text-on-surface-variant font-semibold text-sm hover:bg-[#7d125e]/10 hover:text-[#7d125e] transition-all">11:00 AM</button>
+                                        <button type="button" data-time="12:00" class="time-slot-btn px-4 py-3 rounded-xl bg-surface-container-low text-on-surface-variant font-semibold text-sm hover:bg-[#7d125e]/10 hover:text-[#7d125e] transition-all">12:00 PM</button>
+                                        <button type="button" data-time="14:00" class="time-slot-btn px-4 py-3 rounded-xl bg-surface-container-low text-on-surface-variant font-semibold text-sm hover:bg-[#7d125e]/10 hover:text-[#7d125e] transition-all">02:00 PM</button>
+                                        <button type="button" data-time="16:00" class="time-slot-btn px-4 py-3 rounded-xl bg-surface-container-low text-on-surface-variant font-semibold text-sm hover:bg-[#7d125e]/10 hover:text-[#7d125e] transition-all">04:00 PM</button>
+                                    </div>
+                                    <input type="hidden" id="selectedTime" name="selectedTime" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Final Confirmation & Review -->
+                    <div class="step-form hidden space-y-8" id="step-4">
+                        <div class="text-center mb-4">
+                            <h3 class="text-2xl font-extrabold text-on-surface tracking-tight">System Integrity Check</h3>
+                            <p class="text-on-surface-variant text-sm mt-1">Verify your clinical request parameters before dispatch.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="review-summary">
+                            <!-- Injected by JS -->
+                        </div>
+                        
+                        <!-- Success Message (Post-Submit) -->
+                        <div id="booking-success" class="hidden bg-success/5 border border-success/20 rounded-xl p-8 text-center animate-in fade-in zoom-in duration-500">
+                           <div class="w-16 h-16 bg-success/10 text-success rounded-full flex items-center justify-center mx-auto mb-4">
+                               <span class="material-symbols-outlined text-3xl">verified</span>
+                           </div>
+                           <h4 class="text-xl font-extrabold text-on-surface mb-2">Service Booked Successfully</h4>
+                           <p class="text-sm text-on-surface-variant mb-8">Your ticket #ZM-${Math.floor(Math.random()*9000)+1000} has been logged in our precision pipeline.</p>
+                           
+                           <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-outline-variant/10">
+                               <p class="text-xs font-bold uppercase tracking-widest text-[#7d125e] mb-4">Immediate Follow-up</p>
+                               <a href="https://wa.me/18005550123?text=Hi,%20I%20just%20booked%20a%20service." target="_blank" class="w-full clinical-gradient text-white py-4 rounded-xl font-bold flex items-center justify-center gap-3 hover:shadow-lg transition-all">
+                                   <span class="material-symbols-outlined">chat</span>
+                                   Connect on WhatsApp
+                               </a>
+                               <p class="text-[10px] text-on-surface-variant mt-4 leading-relaxed">Chat with a dispatch engineer to confirm technician arrival time.</p>
+                           </div>
+                        </div>
+                    </div>
+
+                        <!-- Navigation Buttons -->
+                        <div class="flex justify-between items-center pt-8">
+                            <button type="button" id="btn-back"
+                                class="hidden px-8 py-4 bg-surface-container-low text-on-surface-variant rounded-2xl font-bold hover:bg-slate-200 transition-all">
+                                ← Back
+                            </button>
+                            <button type="button" id="btn-next"
+                                class="ml-auto px-12 py-4 bg-gradient-to-br from-[#7d125e] to-[#9b2f77] text-white rounded-2xl font-bold text-lg hover:shadow-lg hover:shadow-[#7d125e]/20 transition-all active:scale-[0.98]">
+                                Next →
+                            </button>
+                            <button type="submit" id="btn-submit"
+                                class="hidden ml-auto px-12 py-4 bg-gradient-to-br from-[#7d125e] to-[#9b2f77] text-white rounded-2xl font-bold text-lg hover:shadow-lg hover:shadow-[#7d125e]/20 transition-all active:scale-[0.98]">
+                                Confirm Service Request
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Quote Result Section (Hidden initially) -->
+                    <div id="quote-result" class="hidden animate-in fade-in zoom-in duration-500 space-y-8 pt-8 border-t border-outline-variant/20 mt-12">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-success/10 text-success rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="material-symbols-outlined text-3xl">verified</span>
+                            </div>
+                            <h2 class="text-3xl font-extrabold text-on-surface">Estimate Generated</h2>
+                            <p class="text-on-surface-variant mt-2">Based on your selection, here is your preliminary investment range.</p>
+                        </div>
+                        
+                        <div class="bg-surface-container-low rounded-2xl p-8 border border-primary/10 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-12 translate-x-12 blur-2xl"></div>
+                            <div class="flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
+                                <div>
+                                    <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-2">Preliminary Range</p>
+                                    <div class="flex items-baseline gap-2">
+                                        <span class="text-5xl font-black text-on-surface tracking-tighter" id="result-price-range">$12k - $18k</span>
+                                    </div>
+                                    <p class="text-xs text-on-surface-variant mt-3 flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[12px]">event_repeat</span> Includes 12-month parts warranty
+                                    </p>
+                                </div>
+                                <button onclick="window.print()" class="px-6 py-3 bg-white dark:bg-slate-800 border border-outline-variant/30 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-slate-50 transition-all">
+                                    <span class="material-symbols-outlined text-lg">print</span> Print Estimate
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-6 bg-[#7d125e]/5 rounded-xl border border-[#7d125e]/10">
+                                <h4 class="font-bold text-[#7d125e] mb-2 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-lg">chat</span> Instant Consultation
+                                </h4>
+                                <p class="text-xs text-on-surface-variant mb-4 font-medium">Chat with an engineer now to lock in this estimate.</p>
+                                <a href="https://wa.me/18005550123" target="_blank" class="text-xs font-extrabold uppercase tracking-widest text-[#7d125e] flex items-center gap-1 hover:underline">
+                                    Open WhatsApp <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                                </a>
+                            </div>
+                            <div class="p-6 bg-slate-50 dark:bg-slate-800 rounded-xl border border-outline-variant/20">
+                                <h4 class="font-bold text-on-surface mb-2 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-lg">mail</span> Email Quote
+                                </h4>
+                                <p class="text-xs text-on-surface-variant mb-4 font-medium">Send a PDF copy of this precision estimate to your clinic.</p>
+                                <button class="text-xs font-extrabold uppercase tracking-widest text-primary flex items-center gap-1 hover:underline">
+                                    Send to Inbox <span class="material-symbols-outlined text-[14px]">send</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sidebar/Info Section -->
+            <aside class="lg:col-span-4 space-y-8">
+                <!-- Info Card 1 -->
+                <div class="bg-[#f3f3f9] p-8 rounded-2xl border-l-4 border-[#7d125e]">
+                    <span class="material-symbols-outlined text-[#7d125e] text-3xl mb-4"
+                        style="font-variation-settings: 'FILL' 1;">verified</span>
+                    <h3 class="text-xl font-bold text-on-surface mb-3">Prevents Downtime</h3>
+                    <p class="text-on-surface-variant leading-relaxed">
+                        Regular checks ensure that minor technical drifts are corrected before they lead to full system
+                        failures. Stay operational 24/7.
+                    </p>
+                </div>
+                <!-- Info Card 2 -->
+                <div class="bg-[#f3f3f9] p-8 rounded-2xl border-l-4 border-[#9b2f77]">
+                    <span class="material-symbols-outlined text-[#9b2f77] text-3xl mb-4"
+                        style="font-variation-settings: 'FILL' 1;">speed</span>
+                    <h3 class="text-xl font-bold text-on-surface mb-3">Extends Equipment Life</h3>
+                    <p class="text-on-surface-variant leading-relaxed">
+                        Precision calibration and professional cleaning can extend the ROI of your medical devices by up
+                        to 40% over their lifecycle.
+                    </p>
+                </div>
+                <!-- Support Card -->
+                <div class="relative overflow-hidden bg-[#7d125e] p-8 rounded-2xl text-white">
+                    <div class="relative z-10">
+                        <h3 class="text-lg font-bold mb-2">Need Help Immediately?</h3>
+                        <p class="text-primary-container text-sm mb-6" style="color: white;">You can reach our technical team for urgent
+                            clinical support.</p>
+                        <a class="inline-flex items-center font-bold gap-2 hover:gap-4 transition-all" href="tel:+212666666666">
+                            Contact Support <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                    <!-- Abstract Background Pattern -->
+                    <div class="absolute -right-10 -bottom-10 opacity-10">
+                        <span class="material-symbols-outlined text-[160px]">home_repair_service</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <!-- Footer Component -->
+    <div id="site-footer-container"></div>
+    <script src="js/components.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/form-validation.js"></script>
+    <script>
+        const quoteForm = document.querySelector('form');
+        const quoteResult = document.getElementById('quote-result');
+        const priceDisplay = document.getElementById('price-odometer');
+        const resultRange = document.getElementById('result-price-range');
+
+        if (quoteForm) {
+            quoteForm.onsubmit = (e) => {
+                e.preventDefault();
+                // Extract base price and create range
+                const basePrice = priceDisplay.textContent.replace(/[$,]/g, '');
+                const num = parseInt(basePrice) || 15000;
+                const low = Math.floor(num * 0.9 / 1000);
+                const high = Math.ceil(num * 1.1 / 1000);
+                
+                resultRange.textContent = `$${low}k - $${high}k`;
+                
+                quoteForm.classList.add('hidden');
+                quoteResult.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+        }
+    </script>
+    <script>
+        // ── Wizard Step Navigation ──────────────────────────────────
+        let currentStep = 1;
+        const totalSteps = 4;
+        const btnNext = document.getElementById('btn-next');
+        const btnBack = document.getElementById('btn-back');
+        const btnSubmit = document.getElementById('btn-submit');
+        const progressFill = document.getElementById('progress-fill');
+
+        function showStep(n) {
+            document.querySelectorAll('.wizard-step').forEach(s => s.classList.add('hidden'));
+            document.getElementById(`step-${n}`).classList.remove('hidden');
+            // Progress bar
+            progressFill.style.width = `${((n - 1) / (totalSteps - 1)) * 100}%`;
+            // Dots
+            for (let i = 1; i <= totalSteps; i++) {
+                const dot = document.getElementById(`step-dot-${i}`);
+                const label = dot.parentElement.querySelector('span:last-child');
+                if (i <= n) {
+                    dot.className = 'w-10 h-10 rounded-full bg-[#7d125e] text-white flex items-center justify-center font-bold text-sm shadow-md';
+                    label.className = "text-[10px] font-bold uppercase tracking-widest mt-2 text-[#7d125e]";
+                } else {
+                    dot.className = 'w-10 h-10 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-sm';
+                    label.className = "text-[10px] font-bold uppercase tracking-widest mt-2 text-slate-400";
+                }
+            }
+            btnBack.classList.toggle('hidden', n === 1 || document.getElementById('booking-success').offsetParent !== null);
+            btnNext.classList.toggle('hidden', n === totalSteps);
+            btnSubmit.classList.toggle('hidden', n !== totalSteps || document.getElementById('booking-success').offsetParent !== null);
+            if (n === 3) renderCalendar();
+            if (n === 4) buildReview();
+        }
+
+        btnNext.addEventListener('click', () => {
+            // Basic validation per step
+            if (currentStep === 1) {
+                const c = document.getElementById('clinicName'), d = document.getElementById('deviceModel'), p = document.getElementById('mobilePhone');
+                if (!c.value.trim() || !d.value.trim() || !p.value.trim()) { c.reportValidity(); d.reportValidity(); p.reportValidity(); return; }
+            }
+            if (currentStep === 2) {
+                const desc = document.getElementById('issueDescription');
+                if (!desc.value.trim()) { desc.reportValidity(); return; }
+            }
+            if (currentStep < totalSteps) { currentStep++; showStep(currentStep); }
+        });
+        btnBack.addEventListener('click', () => { if (currentStep > 1) { currentStep--; showStep(currentStep); } });
+
+        btnSubmit.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Show Success UI
+            document.getElementById('review-summary').classList.add('hidden');
+            document.querySelector('#step-4 > div:first-child').classList.add('hidden');
+            document.getElementById('booking-success').classList.remove('hidden');
+            
+            // Hide navigation
+            btnBack.classList.add('hidden');
+            btnSubmit.classList.add('hidden');
+            
+            // Update progress track to 100% success look
+            document.querySelector('.relative.flex.items-center.justify-between').querySelectorAll('.w-10').forEach(dot => {
+                dot.classList.add('bg-success');
+                dot.innerHTML = '<span class="material-symbols-outlined text-white text-sm">check</span>';
+            });
+        });
+
+        // ── Calendar ────────────────────────────────────────────────
+        let calYear, calMonth, selectedDateStr = '';
+        const today = new Date();
+        calYear = today.getFullYear();
+        calMonth = today.getMonth();
+
+        const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+        function renderCalendar() {
+            const grid = document.getElementById('cal-grid');
+            const label = document.getElementById('cal-month-label');
+            label.textContent = `${monthNames[calMonth]} ${calYear}`;
+            grid.innerHTML = '';
+            const firstDay = new Date(calYear, calMonth, 1).getDay();
+            const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+            const todayStr = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+
+            for (let i = 0; i < firstDay; i++) {
+                grid.innerHTML += '<div></div>';
+            }
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+                const isPast = dateStr < todayStr;
+                const isSelected = dateStr === selectedDateStr;
+                const cls = isPast
+                    ? 'py-2 rounded-lg text-slate-300 cursor-not-allowed'
+                    : isSelected
+                        ? 'py-2 rounded-lg bg-[#7d125e] text-white font-bold cursor-pointer shadow-md'
+                        : 'py-2 rounded-lg hover:bg-[#7d125e]/10 text-on-surface cursor-pointer font-medium transition-colors';
+                grid.innerHTML += `<div class="${cls}" ${isPast ? '' : `onclick="pickDate('${dateStr}', this)"`}>${d}</div>`;
+            }
+        }
+
+        window.pickDate = function(dateStr, el) {
+            selectedDateStr = dateStr;
+            document.getElementById('selectedDate').value = dateStr;
+            renderCalendar();
+        };
+        window.calNav = function(dir) {
+            calMonth += dir;
+            if (calMonth > 11) { calMonth = 0; calYear++; }
+            if (calMonth < 0) { calMonth = 11; calYear--; }
+            renderCalendar();
+        };
+
+        // ── Time Slots ──────────────────────────────────────────────
+        document.querySelectorAll('.time-slot-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.time-slot-btn').forEach(b => {
+                    b.className = 'time-slot-btn px-4 py-3 rounded-xl bg-surface-container-low text-on-surface-variant font-semibold text-sm hover:bg-[#7d125e]/10 hover:text-[#7d125e] transition-all';
+                });
+                btn.className = 'time-slot-btn px-4 py-3 rounded-xl bg-[#7d125e] text-white font-bold text-sm shadow-md transition-all';
+                document.getElementById('selectedTime').value = btn.dataset.time;
+            });
+        });
+
+        // ── Review Summary ──────────────────────────────────────────
+        function buildReview() {
+            const fields = [
+                { label: 'Clinic', value: document.getElementById('clinicName').value },
+                { label: 'Device', value: document.getElementById('deviceModel').value },
+                { label: 'Phone', value: document.getElementById('mobilePhone').value },
+                { label: 'Issue', value: document.getElementById('issueDescription').value },
+                { label: 'Urgency', value: document.getElementById('urgencyLevel').value },
+                { label: 'Date', value: selectedDateStr || '—' },
+                { label: 'Time', value: document.getElementById('selectedTime').value || '—' }
+            ];
+            const container = document.getElementById('review-summary');
+            container.innerHTML = fields.map(f => `
+                <div class="flex justify-between items-start bg-surface-container-low p-4 rounded-xl">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">${f.label}</span>
+                    <span class="text-sm font-semibold text-on-surface text-right max-w-[60%]">${f.value}</span>
+                </div>`).join('');
+        }
+
+        showStep(1);
+    </script>
+</body>
+</html>

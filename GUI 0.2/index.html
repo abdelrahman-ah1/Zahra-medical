@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Zahra Medical - Precision Maintenance and Bespoke Care for medical and aesthetic equipment." />
+    <meta property="og:title" content="Zahra Medical" />
+    <meta property="og:description" content="Precision Maintenance and Bespoke Care." />
+    <meta property="og:image" content="img/LOGO EN pur.png" />
+    <meta property="og:url" content="https://zahratrade.com" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7d125e" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Zahra Medical</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="js/tailwind-config.js"></script>
+    <link href="css/global.css" rel="stylesheet" />
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/preloader.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body class="bg-surface text-on-surface">
+    <div id="site-header-container"></div>
+    <main class="pt-20">
+        <!-- ═══ HERO SECTION — Premium ═══ -->
+        <section class="relative px-8 py-28 md:py-36 overflow-hidden gradient-mesh">
+            <!-- Particle dot grid background -->
+            <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(circle at 1px 1px, #7d125e 1px, transparent 0); background-size: 40px 40px;"></div>
+
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="z-10">
+                    <span class="inline-block px-4 py-1.5 mb-6 text-xs font-bold uppercase tracking-[0.2em] bg-secondary-container text-on-secondary-container rounded-full text-reveal">Precision Maintenance</span>
+                    <h1 class="text-6xl md:text-7xl font-extrabold tracking-tighter mb-8 leading-[1.05] text-reveal text-reveal-delay-1">
+                        The Clinical <br />
+                        <span class="text-primary italic">Atelier.</span>
+                    </h1>
+                    <p class="text-lg text-on-surface-variant max-w-lg mb-10 leading-relaxed text-reveal text-reveal-delay-2">
+                        Redefining medical equipment lifecycle management. From high-tech laser calibration to bespoke
+                        B2C procurement, we provide the technical soul for your clinical excellence.
+                    </p>
+                    <div class="flex flex-wrap gap-4 text-reveal text-reveal-delay-3">
+                        <a href="quote.html">
+                        <button class="bg-gradient-primary text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 active:scale-95 transition-all btn-magnetic btn-ripple">
+                            Request a Quote
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                        </a>
+                        <a href="reservation.html">
+                        <button class="bg-surface-container-high text-primary px-8 py-4 rounded-xl font-bold active:scale-95 transition-all btn-magnetic">
+                            Book Maintenance
+                        </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="relative text-reveal text-reveal-delay-3">
+                    <div class="w-full aspect-square rounded-2xl overflow-hidden shadow-2xl relative z-10 transform lg:translate-x-12 lg:-rotate-2 border-8 border-white dark:border-slate-800 card-tilt">
+                        <img class="w-full h-full object-cover"
+                            alt="High-tech aesthetic medical laser equipment in a clinic"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM6G9DYEpumYPQZFnN7VdKJq_y5woP0umpG-z0gYxga_59Y71t4w-bssAniLBQtWRmkSWMflbSugEiyyQDI54qj-22MYqFcHNnO5zY4at-f_Fp7lMRvkb7hU8yRHjt0WrvPJCFRuyqjLnusYs9BRyjVZADsl7hboPd_vSxIstwzQA_1dEztU5_GiPn9VpPP_YmMhtR0XXqqdKh77TtVoALM4BMC1F2_e4zFBODYXtFE5eQWBozfvZGAXp6drHpQzwFn_xRWelu5w" />
+                    </div>
+                    <div class="absolute -bottom-10 -left-10 w-2/3 aspect-video bg-primary-container rounded-2xl z-0 overflow-hidden shadow-xl transform rotate-3">
+                        <img loading="lazy" class="w-full h-full object-cover opacity-60 mix-blend-overlay"
+                            alt="Close up of medical circuit board maintenance"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7LTJOl4Ftx5RjdPWLxhN1c9-05jwdHr5B4bf9IrH94Y5nSyG67RSW-7JGkKBySjuY6-5rlLkInoNooeHphdDCJd11iV2AEUBySdeSf5HAqF7fYb9NOGRm4ghTlaJWGDT65_6rgOdQLMKKMqXhhjnqNR9MRbG4_txpK5iRbzXJrnLWkESLIMZFMM_pIQBoHzc1aLGF9E8exb10H16dcqne9LyB2v6UDaGXgq5obLSC1qfWMCVZrPdq0GXGn1fB9wqMZYtGXPUZLQ" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ANIMATED STATS COUNTER BAR ═══ -->
+        <section class="py-16 bg-surface-container-lowest border-y border-outline-variant/10" id="stats-counter-section">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div data-aos="fade-up" data-aos-delay="0">
+                        <p class="text-4xl md:text-5xl font-black text-primary tracking-tighter"><span class="counter-value" data-target="500">0</span>+</p>
+                        <p class="text-sm font-semibold text-on-surface-variant mt-2 uppercase tracking-wider">Clinics Served</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <p class="text-4xl md:text-5xl font-black text-primary tracking-tighter"><span class="counter-value" data-target="15">0</span>+</p>
+                        <p class="text-sm font-semibold text-on-surface-variant mt-2 uppercase tracking-wider">Years Experience</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <p class="text-4xl md:text-5xl font-black text-primary tracking-tighter"><span class="counter-value" data-target="10000">0</span>+</p>
+                        <p class="text-sm font-semibold text-on-surface-variant mt-2 uppercase tracking-wider">Devices Serviced</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="300">
+                        <p class="text-4xl md:text-5xl font-black text-primary tracking-tighter"><span class="counter-value" data-target="98">0</span>%</p>
+                        <p class="text-sm font-semibold text-on-surface-variant mt-2 uppercase tracking-wider">First-Visit Resolution</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SERVICES SECTION (Bento Grid) ═══ -->
+        <section class="px-8 py-32 bg-surface-container-low">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                    <div>
+                        <h2 class="text-4xl font-bold tracking-tight mb-4">Core Competencies</h2>
+                        <p class="text-on-surface-variant text-lg">Specialized support across the entire medical landscape.</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Maintenance Card -->
+                    <div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm card-hover-lift shine-sweep group">
+                        <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary transition-colors">
+                            <span class="material-symbols-outlined text-primary group-hover:text-white" data-icon="build">build</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Equipment Maintenance</h3>
+                        <p class="text-on-surface-variant leading-relaxed mb-8">On-site technical support for Candela, Cynosure, and Zimmer systems with certified precision.</p>
+                        <a class="text-primary font-bold flex items-center gap-2 group/link" href="reservation.html">
+                            Learn More
+                            <span class="material-symbols-outlined transition-transform group-hover/link:translate-x-1">chevron_right</span>
+                        </a>
+                    </div>
+                    <!-- Spare Parts Card -->
+                    <div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm card-hover-lift shine-sweep group">
+                        <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary transition-colors">
+                            <span class="material-symbols-outlined text-primary group-hover:text-white" data-icon="settings_input_component">settings_input_component</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Spare Parts</h3>
+                        <p class="text-on-surface-variant leading-relaxed mb-8">Authentic components for long-term reliability. Globally sourced, locally delivered.</p>
+                        <a class="text-primary font-bold flex items-center gap-2 group/link" href="inventory.html">
+                            Inventory
+                            <span class="material-symbols-outlined transition-transform group-hover/link:translate-x-1">chevron_right</span>
+                        </a>
+                    </div>
+                    <!-- Sales Card -->
+                    <div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm card-hover-lift shine-sweep group">
+                        <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary transition-colors">
+                            <span class="material-symbols-outlined text-primary group-hover:text-white" data-icon="shopping_bag">shopping_bag</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Equipment Sales</h3>
+                        <p class="text-on-surface-variant leading-relaxed mb-8">Curated high-end medical devices for professional clinics and private practice excellence.</p>
+                        <a class="text-primary font-bold flex items-center gap-2 group/link" href="quote.html">
+                            View Store
+                            <span class="material-symbols-outlined transition-transform group-hover/link:translate-x-1">chevron_right</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ HOW IT WORKS — Timeline ═══ -->
+        <section class="py-24 px-8" id="how-it-works">
+            <div class="max-w-5xl mx-auto text-center mb-16">
+                <span class="inline-block px-4 py-1.5 mb-6 text-xs font-bold uppercase tracking-[0.2em] bg-tertiary-container/30 text-on-tertiary-container rounded-full">Our Process</span>
+                <h2 class="text-4xl font-bold tracking-tight mb-4">How It Works</h2>
+                <p class="text-on-surface-variant text-lg max-w-2xl mx-auto">From your first call to certified completion — a seamless, transparent process.</p>
+            </div>
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-0 relative">
+                    <!-- Connecting line -->
+                    <div class="hidden md:block absolute top-10 left-[12.5%] right-[12.5%] h-0.5 bg-slate-200 dark:bg-slate-700 z-0"></div>
+
+                    <!-- Step 1 -->
+                    <div class="relative flex flex-col items-center text-center px-4 z-10" data-aos="fade-up" data-aos-delay="0">
+                        <div class="w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 mb-6">
+                            <span class="material-symbols-outlined text-3xl">call</span>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Contact</h4>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Reach out via phone, WhatsApp, or submit a service request form.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="relative flex flex-col items-center text-center px-4 z-10" data-aos="fade-up" data-aos-delay="150">
+                        <div class="w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 mb-6">
+                            <span class="material-symbols-outlined text-3xl">biotech</span>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Diagnose</h4>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Our engineers perform a thorough on-site assessment of your equipment.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="relative flex flex-col items-center text-center px-4 z-10" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 mb-6">
+                            <span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Repair</h4>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Precision repair using 100% OEM parts with documented calibration.</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="relative flex flex-col items-center text-center px-4 z-10" data-aos="fade-up" data-aos-delay="450">
+                        <div class="w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 mb-6">
+                            <span class="material-symbols-outlined text-3xl">verified</span>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Certify</h4>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Full performance certification and preventive care recommendations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ Cost of Downtime ROI Calculator ═══ -->
+        <section class="max-w-7xl mx-auto px-8 py-24 relative overflow-hidden" id="roi-calculator" data-aos="fade-up">
+            <div class="bg-surface-container-highest rounded-3xl p-10 lg:p-16 relative overflow-hidden shadow-[0_20px_40px_rgba(25,28,32,0.06)]">
+                <!-- Decorative Background Grid -->
+                <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#9b2f77 1px, transparent 1px); background-size: 32px 32px;"></div>
+                
+                <div class="flex flex-col lg:flex-row gap-16 items-center">
+                    <div class="flex-1 relative z-10 w-full">
+                        <span class="inline-block px-4 py-1.5 mb-6 text-xs font-bold uppercase tracking-[0.2em] bg-error/10 text-error rounded-full"><span class="material-symbols-outlined text-[12px] inline-block align-middle mr-1">trending_down</span> Risk Assessment</span>
+                        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight text-on-surface">Calculate Your True <br/>Cost of Downtime.</h2>
+                        <p class="text-lg text-on-surface-variant mb-10 leading-relaxed">Reactive emergency repairs don't just cost parts and labor. They cost patient trust and canceled booking revenue. See exactly what unmanaged equipment lifecycle costs your clinic.</p>
+                        
+                        <!-- Sliders -->
+                        <div class="space-y-8 bg-surface-container-low p-8 rounded-2xl border border-outline-variant/20 shadow-lg">
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-end">
+                                    <label class="font-bold text-sm text-on-surface">Average Daily Rev per Device</label>
+                                    <span class="text-xl font-black text-primary" id="valRevenue">EGP 15,000</span>
+                                </div>
+                                <input type="range" id="sliderRevenue" min="2000" max="50000" step="500" value="15000" class="w-full h-2 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary">
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-end">
+                                    <label class="font-bold text-sm text-on-surface">Estimated Days Down (Annually)</label>
+                                    <span class="text-xl font-black text-error" id="valDays">8 Days</span>
+                                </div>
+                                <input type="range" id="sliderDays" min="1" max="30" step="1" value="8" class="w-full h-2 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-error">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 relative z-10 w-full">
+                        <div class="bg-gradient-to-br from-[#7d125e] to-[#9b2f77] p-10 md:p-14 rounded-[2rem] shadow-[0_20px_50px_rgba(125,18,94,0.3)] text-white relative overflow-hidden">
+                            <!-- Abstract glow -->
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white/10 rounded-full blur-[60px]"></div>
+                            
+                            <div class="relative z-10">
+                                <h3 class="text-lg font-bold opacity-80 uppercase tracking-widest mb-2">Projected Profit Loss</h3>
+                                <div class="flex items-start gap-2 mb-8">
+                                    <span class="text-2xl font-bold mt-2 opacity-80">EGP</span>
+                                    <span class="text-6xl md:text-7xl font-black tracking-tighter" id="valTotalLoss">120,000</span>
+                                </div>
+                                
+                                <div class="h-[1px] bg-white/20 mb-8 w-full"></div>
+                                
+                                <div class="flex justify-between items-center mb-8">
+                                    <div>
+                                        <p class="text-sm font-bold opacity-80 uppercase tracking-widest mb-1">Preventive Contract Est.</p>
+                                        <p class="text-xl font-bold text-primary-fixed">Fraction of the cost.</p>
+                                    </div>
+                                    <span class="material-symbols-outlined text-4xl text-primary-fixed opacity-80" data-icon="health_and_safety">health_and_safety</span>
+                                </div>
+                                
+                                <a href="contact.html" class="w-full bg-white text-[#7d125e] py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 text-center btn-magnetic">
+                                    Request SLA Proposal <span class="material-symbols-outlined text-sm pt-0.5" data-icon="arrow_forward">arrow_forward</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ Featured Products / Quote Flow ═══ -->
+        <section class="px-8 py-32">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl font-bold tracking-tight mb-4">Premium Inventory</h2>
+                    <p class="text-on-surface-variant max-w-2xl mx-auto">Selected technologies currently available for immediate procurement or lease-to-own programs.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Product Card -->
+                    <div class="flex flex-col card-hover-lift">
+                        <div class="bg-surface-container-low aspect-[4/5] rounded-xl mb-6 overflow-hidden relative group shine-sweep">
+                            <img loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                alt="Modern aesthetic laser device profile"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk0xEtTDrzQbLmCOCbvHaRxDnM7OEcPCQnWx0ObuiNXyg1WIj2M84s3wT3HwPJZ7VaIEeZ_bMwo9jRFs-Bd8jYo1A0lELN64gW_ZYgYOmiKd2OJwFuO_sJKVPBrZLAgQhDvc5XzVg7M7o8igq4FmkrdzsR27SS7HZfNCVoekjlWTnelkdZj0_mPWWrJmwYpXeeiCKhJIMi7YLK-sQZeSfbHBbhCFMohI1IqDelbqHKYLIOjCnpKOHe9n49y3W7IpIumzb-VQdQuw" />
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-primary">In Stock</span>
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-bold">Candela GentleLase</h4>
+                        <p class="text-sm text-on-surface-variant mb-4">Alexandrite Laser Technology</p>
+                        <a href="quote.html">
+                        <button class="w-full py-3 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all active:scale-95">
+                            Request Quote</button></a>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="flex flex-col card-hover-lift">
+                        <div class="bg-surface-container-low aspect-[4/5] rounded-xl mb-6 overflow-hidden relative group shine-sweep">
+                            <img loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                alt="Advanced medical cooling system"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX9tfKgRYaY1Auy5S1FZVHkecymjYgnUKW8dSXddkdg00PMVbXxRRnYYGOmgSgA5aSezqHpuG7kq0tUgXQbbdQytH01mFjPz2CgEmjeb0iFmLt79Jtd_sh2zKK7AAZSZrPnmnMeMuE6hpHYrKVZmybUY1pOODpI3RqvwkVqG4GBhBVAWgaUEBcvf8m2udiKPqCWmb_-fRQ1G-h4iIXhuLkRP68xkn54n9QDuwRjpOLfJRvAARxotVDV6ihYbZIecqyhJmXIEXDZQ" />
+                        </div>
+                        <h4 class="text-lg font-bold">Zimmer Cryo 6</h4>
+                        <p class="text-sm text-on-surface-variant mb-4">Cold Air Skin Cooling System</p>
+                        <a href="quote.html">
+                        <button class="w-full py-3 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all active:scale-95">
+                            Request Quote</button></a>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="flex flex-col card-hover-lift">
+                        <div class="bg-surface-container-low aspect-[4/5] rounded-xl mb-6 overflow-hidden relative group shine-sweep">
+                            <img loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                alt="Professional clinical equipment detail"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDy7XXB7PVDCDcUn3_63WsJdEfBGFnWsr3DHOiDnOwq7mkmWF6iquH05LSmo-7cN2G87DTI4g387hHy83Biql9636t3vsTTxWlPQCIoRhRLtIti17fMELlcpOEiBI74NbWrKMIUp5-XhmPfO3HNhRUJJxVqYib5gdU9lOBZ_EhnplZoQ2wkWb5rrYm-Xrvc8uQSLMadMCqD_3SGbOSeid-1IDTd260bEOu5Fvr5lPxr2K1uab6cGrE07NDsEWeqqc6mwLr12NTcw" />
+                        </div>
+                        <h4 class="text-lg font-bold">Cynosure Elite+</h4>
+                        <p class="text-sm text-on-surface-variant mb-4">Dual-Wavelength Aesthetic System</p>
+                        <a href="quote.html">
+                        <button class="w-full py-3 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all active:scale-95">
+                            Request Quote</button></a>
+                    </div>
+                    <!-- Product Card 4 -->
+                    <div class="flex flex-col card-hover-lift">
+                        <div class="bg-surface-container-low aspect-[4/5] rounded-xl mb-6 overflow-hidden relative group shine-sweep">
+                            <img loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                alt="Specialized medical probe"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdhkUyw3jsQHC2-KvrJz2t87VRW0Vh4sf7J0m93gCyRs-fmEIcT4j-W93uqcC0_TeInJQzReQ1E9euDDtwY9D8XuEaigC51qfcplJ0QtQmRrlioz7FYb6H0iwEbPq6UYLWum-dJnAWst9L-k5MlTarhk4yJi_tZlxae74kOEGuWTCb_i_NzffGv_lBlbEkC6X2Wjz59mAYO0Qoe69bY_evRhT56S1edSmhSd2nXvFg3MQecx8UN9dXwkqY_VzU2wcmQIagtKE9Lw" />
+                        </div>
+                        <h4 class="text-lg font-bold">Zahra Custom Probe</h4>
+                        <p class="text-sm text-on-surface-variant mb-4">Replacement Handpieces</p>
+                        <a href="quote.html">
+                        <button class="w-full py-3 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all active:scale-95">
+                            Request Quote</button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CLIENT TESTIMONIALS ═══ -->
+        <section class="py-24 bg-surface-container-low overflow-hidden">
+            <div class="max-w-7xl mx-auto px-8 mb-12 text-center">
+                <h2 class="text-4xl font-bold tracking-tight mb-4">Trusted by Leading Clinics</h2>
+                <p class="text-on-surface-variant text-lg max-w-2xl mx-auto">What our clinical partners say about working with Zahra Medical.</p>
+            </div>
+            <div class="flex gap-6 px-8 overflow-hidden">
+                <div class="marquee-track">
+                    <!-- Testimonial Cards (duplicated for infinite scroll) -->
+                    <div class="glass-card rounded-2xl p-8 min-w-[360px] max-w-[360px] mx-3 flex-shrink-0">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-sm">AK</div>
+                            <div><p class="font-bold text-sm">Dr. Ahmed Khalil</p><p class="text-xs text-on-surface-variant">Cairo Aesthetics Center</p></div>
+                        </div>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">"Zahra Medical transformed our equipment uptime. Their 4-hour response time and OEM parts have been a game-changer for our practice."</p>
+                        <div class="flex gap-1 mt-4 text-amber-500">★★★★★</div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 min-w-[360px] max-w-[360px] mx-3 flex-shrink-0">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-sm">SM</div>
+                            <div><p class="font-bold text-sm">Dr. Sara Mansour</p><p class="text-xs text-on-surface-variant">Radiance Clinic</p></div>
+                        </div>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">"We've reduced our maintenance costs by 35% since partnering with Zahra Medical. Professional, reliable, and incredibly knowledgeable."</p>
+                        <div class="flex gap-1 mt-4 text-amber-500">★★★★★</div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 min-w-[360px] max-w-[360px] mx-3 flex-shrink-0">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-sm">HE</div>
+                            <div><p class="font-bold text-sm">Dr. Hana El-Sayed</p><p class="text-xs text-on-surface-variant">Nile Dermatology</p></div>
+                        </div>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">"The preventive maintenance program pays for itself. Zero unexpected downtime in 18 months — our patients and revenue thank us."</p>
+                        <div class="flex gap-1 mt-4 text-amber-500">★★★★★</div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 min-w-[360px] max-w-[360px] mx-3 flex-shrink-0">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-sm">OB</div>
+                            <div><p class="font-bold text-sm">Dr. Omar Badr</p><p class="text-xs text-on-surface-variant">Elite Medical Spa</p></div>
+                        </div>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">"From calibration to emergency repairs, Zahra Medical is the only technical partner I trust with my laser equipment."</p>
+                        <div class="flex gap-1 mt-4 text-amber-500">★★★★★</div>
+                    </div>
+                    <!-- Duplicates for seamless loop -->
+                    <div class="glass-card rounded-2xl p-8 min-w-[360px] max-w-[360px] mx-3 flex-shrink-0">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-sm">AK</div>
+                            <div><p class="font-bold text-sm">Dr. Ahmed Khalil</p><p class="text-xs text-on-surface-variant">Cairo Aesthetics Center</p></div>
+                        </div>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">"Zahra Medical transformed our equipment uptime. Their 4-hour response time and OEM parts have been a game-changer for our practice."</p>
+                        <div class="flex gap-1 mt-4 text-amber-500">★★★★★</div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 min-w-[360px] max-w-[360px] mx-3 flex-shrink-0">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-sm">SM</div>
+                            <div><p class="font-bold text-sm">Dr. Sara Mansour</p><p class="text-xs text-on-surface-variant">Radiance Clinic</p></div>
+                        </div>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">"We've reduced our maintenance costs by 35% since partnering with Zahra Medical. Professional, reliable, and incredibly knowledgeable."</p>
+                        <div class="flex gap-1 mt-4 text-amber-500">★★★★★</div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 min-w-[360px] max-w-[360px] mx-3 flex-shrink-0">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-sm">HE</div>
+                            <div><p class="font-bold text-sm">Dr. Hana El-Sayed</p><p class="text-xs text-on-surface-variant">Nile Dermatology</p></div>
+                        </div>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">"The preventive maintenance program pays for itself. Zero unexpected downtime in 18 months — our patients and revenue thank us."</p>
+                        <div class="flex gap-1 mt-4 text-amber-500">★★★★★</div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 min-w-[360px] max-w-[360px] mx-3 flex-shrink-0">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-sm">OB</div>
+                            <div><p class="font-bold text-sm">Dr. Omar Badr</p><p class="text-xs text-on-surface-variant">Elite Medical Spa</p></div>
+                        </div>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">"From calibration to emergency repairs, Zahra Medical is the only technical partner I trust with my laser equipment."</p>
+                        <div class="flex gap-1 mt-4 text-amber-500">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ Trust Signals / Partner Marquee ═══ -->
+        <section class="py-24 border-t border-slate-100 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-8">
+                <p class="text-center text-xs font-black uppercase tracking-[0.3em] text-slate-400 mb-12">Authorised Maintenance &amp; Support For</p>
+                <div class="overflow-hidden">
+                    <div class="marquee-track" style="animation-duration: 20s;">
+                        <span class="text-3xl font-black text-slate-800 dark:text-slate-300 tracking-tighter mx-12 opacity-30 hover:opacity-100 transition-opacity">CANDELA</span>
+                        <span class="text-3xl font-black text-slate-800 dark:text-slate-300 tracking-tighter mx-12 opacity-30 hover:opacity-100 transition-opacity">CYNOSURE</span>
+                        <span class="text-3xl font-black text-slate-800 dark:text-slate-300 tracking-tighter mx-12 opacity-30 hover:opacity-100 transition-opacity">ZIMMER</span>
+                        <span class="text-3xl font-black text-slate-800 dark:text-slate-300 tracking-tighter mx-12 opacity-30 hover:opacity-100 transition-opacity">ALMA</span>
+                        <span class="text-3xl font-black text-slate-800 dark:text-slate-300 tracking-tighter mx-12 opacity-30 hover:opacity-100 transition-opacity">CUTERA</span>
+                        <!-- Duplicates for seamless loop -->
+                        <span class="text-3xl font-black text-slate-800 dark:text-slate-300 tracking-tighter mx-12 opacity-30 hover:opacity-100 transition-opacity">CANDELA</span>
+                        <span class="text-3xl font-black text-slate-800 dark:text-slate-300 tracking-tighter mx-12 opacity-30 hover:opacity-100 transition-opacity">CYNOSURE</span>
+                        <span class="text-3xl font-black text-slate-800 dark:text-slate-300 tracking-tighter mx-12 opacity-30 hover:opacity-100 transition-opacity">ZIMMER</span>
+                        <span class="text-3xl font-black text-slate-800 dark:text-slate-300 tracking-tighter mx-12 opacity-30 hover:opacity-100 transition-opacity">ALMA</span>
+                        <span class="text-3xl font-black text-slate-800 dark:text-slate-300 tracking-tighter mx-12 opacity-30 hover:opacity-100 transition-opacity">CUTERA</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ Newsletter CTA ═══ -->
+        <section class="px-8 pb-32">
+            <div class="max-w-7xl mx-auto bg-gradient-primary rounded-[2rem] p-12 md:p-20 relative overflow-hidden">
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-4xl font-bold text-white mb-6">Stay informed on <br />clinical precision.</h2>
+                        <p class="text-white/80 text-lg mb-0">Join 500+ clinics receiving monthly maintenance tips and exclusive inventory early-access.</p>
+                    </div>
+                    <form class="flex flex-col sm:flex-row gap-4" onsubmit="event.preventDefault(); if(window.ZahraToast) ZahraToast.success('Subscribed successfully!'); this.reset();">
+                        <input required class="flex-1 bg-white/10 border-0 rounded-xl px-6 py-4 text-white placeholder:text-white/70 focus:ring-2 focus:ring-white/50" placeholder="Your clinical email" type="email" />
+                        <button type="submit" class="bg-white text-primary px-8 py-4 rounded-xl font-bold hover:bg-surface-container-lowest transition-colors active:scale-95">Subscribe</button>
+                    </form>
+                </div>
+                <!-- Abstract circle decoration -->
+                <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+            </div>
+        </section>
+    </main>
+    <div id="site-footer-container"></div>
+    <script src="js/components.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/roi-calculator.js"></script>
+    <!-- Animated Counters -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll('.counter-value');
+            let animated = false;
+
+            function animateCounters() {
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const startTime = performance.now();
+                    
+                    function update(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        // Easing: ease-out cubic
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        const current = Math.floor(eased * target);
+                        counter.textContent = current.toLocaleString();
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(update);
+                        } else {
+                            counter.textContent = target.toLocaleString();
+                        }
+                    }
+                    requestAnimationFrame(update);
+                });
+            }
+
+            // Trigger when stats section is in viewport
+            const statsSection = document.getElementById('stats-counter-section');
+            if (statsSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !animated) {
+                            animated = true;
+                            animateCounters();
+                        }
+                    });
+                }, { threshold: 0.3 });
+                observer.observe(statsSection);
+            }
+        });
+    </script>
+</body>
+
+</html>

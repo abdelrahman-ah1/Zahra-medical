@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Zahra Medical - Precision Maintenance and Bespoke Care for medical and aesthetic equipment." />
+    <meta property="og:title" content="Zahra Medical" />
+    <meta property="og:description" content="Precision Maintenance and Bespoke Care." />
+    <meta property="og:image" content="img/LOGO EN pur.png" />
+    <meta property="og:url" content="https://zahratrade.com" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7d125e" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="js/tailwind-config.js"></script>
+    <link href="css/global.css" rel="stylesheet" />
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/preloader.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        @keyframes starGlow {
+            0% { filter: drop-shadow(0 0 0 rgba(155, 47, 119, 0)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 15px rgba(255, 174, 218, 0.9)); transform: scale(1.3); color: #ffc1e1; }
+            100% { filter: drop-shadow(0 0 4px rgba(155, 47, 119, 0.5)); transform: scale(1); }
+        }
+        .animate-star-glow {
+            animation: starGlow 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-surface">
+    <div id="site-header-container"></div>
+
+    <!-- Main Content Canvas -->
+    <main class="pt-24 pb-32 px-6 lg:px-24 max-w-7xl mx-auto">
+        <!-- Hero Section -->
+        <section class="mb-16">
+            <div class="relative overflow-hidden rounded-3xl bg-surface-container-low p-8 md:p-12">
+                <div class="relative z-10 max-w-2xl">
+                    <span class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block">The Clinical
+                        Atelier</span>
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight mb-6">Your Experience
+                        Shapes Our <span class="text-primary">Precision</span>.</h1>
+                    <p class="text-on-surface-variant text-lg leading-relaxed">We believe in bespoke medical excellence.
+                        Share your journey with Zahra Medical to help us refine our artisanal approach to healthcare.
+                    </p>
+                </div>
+                <div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+                    <span class="material-symbols-outlined text-[200px] text-primary rotate-12">rate_review</span>
+                </div>
+            </div>
+        </section>
+        <!-- Bento Grid Feedback Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Feedback Form Card (Asymmetric Span) -->
+            <div
+                class="lg:col-span-7 bg-surface-container-lowest rounded-3xl p-8 lg:p-10 shadow-[0_20px_40px_rgba(25,28,32,0.06)]">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-on-surface mb-2">Leave a Review</h2>
+                    <p class="text-on-surface-variant">Tell us about your recent service or consultation.</p>
+                </div>
+                <form class="space-y-6">
+                    <!-- Star Rating Component -->
+                    <!-- Star Rating Component -->
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-on-surface">Service Quality</label>
+                        <input type="hidden" name="rating" id="ratingInput" value="4" required>
+                        <div class="flex space-x-2" id="star-buttons">
+                            <button class="star-btn material-symbols-outlined text-primary-container text-4xl transition-all duration-300 cursor-pointer" style="font-variation-settings: 'FILL' 1;" type="button" data-val="1">star</button>
+                            <button class="star-btn material-symbols-outlined text-primary-container text-4xl transition-all duration-300 cursor-pointer" style="font-variation-settings: 'FILL' 1;" type="button" data-val="2">star</button>
+                            <button class="star-btn material-symbols-outlined text-primary-container text-4xl transition-all duration-300 cursor-pointer" style="font-variation-settings: 'FILL' 1;" type="button" data-val="3">star</button>
+                            <button class="star-btn material-symbols-outlined text-primary-container text-4xl transition-all duration-300 cursor-pointer" style="font-variation-settings: 'FILL' 1;" type="button" data-val="4">star</button>
+                            <button class="star-btn material-symbols-outlined text-primary-container text-4xl transition-all duration-300 cursor-pointer" style="font-variation-settings: 'FILL' 1;" type="button" data-val="5">star</button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6 pt-4">
+                        <!-- Anonymous Toggle -->
+                        <div class="flex items-center gap-3">
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="anonymous-toggle" class="sr-only peer">
+                                <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#7d125e]"></div>
+                            </label>
+                            <span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Submit Anonymously</span>
+                        </div>
+
+                        <div id="name-container" class="space-y-2">
+                            <label class="block text-sm font-semibold text-on-surface">Full Name</label>
+                            <input id="feedback-name" required
+                                class="w-full bg-surface-container-low border-none rounded-lg p-3 text-on-surface focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-slate-400"
+                                placeholder="Your professional name..." type="text" minlength="3" />
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block text-sm font-semibold text-on-surface">Your Experience</label>
+                            <textarea required id="feedback-message"
+                                class="w-full bg-surface-container-low border-none rounded-lg p-3 text-on-surface focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-slate-400"
+                                placeholder="Describe your experience with our team..." rows="5"></textarea>
+                        </div>
+
+                        <button
+                            class="w-full clinical-gradient text-white py-4 rounded-xl font-bold hover:shadow-xl hover:scale-[1.01] active:scale-95 transition-all shadow-lg text-lg tracking-tight"
+                            type="submit" id="feedback-submit-btn">
+                            Submit Feedback
+                        </button>
+                    </div>
+                        
+                        <!-- Thank You Summary -->
+                        <div id="feedback-thankyou" class="hidden animate-in fade-in zoom-in duration-500 bg-success/5 border border-success/20 rounded-2xl p-8 text-center">
+                            <div class="w-16 h-16 bg-success/10 text-success rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="material-symbols-outlined text-3xl">verified</span>
+                            </div>
+                            <h3 class="text-2xl font-extrabold text-on-surface">Thank You!</h3>
+                            <p class="text-on-surface-variant text-sm mt-2 leading-relaxed">Your professional insights have been logged. Your dedication to medical excellence helps us maintain our precision standards.</p>
+                            <a href="index.html" class="inline-block mt-8 text-sm font-bold text-primary underline underline-offset-4">Return to Home</a>
+                        </div>
+                </form>
+            </div>
+            <!-- Recent Feedback Sidebar -->
+            <div class="lg:col-span-5 space-y-6">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-xl font-bold text-on-surface">Recent Feedbacks</h3>
+                    <span class="text-xs font-bold text-primary uppercase tracking-widest">Live Updates</span>
+                </div>
+                <!-- Testimonial Card 1 -->
+                <div class="bg-surface-container rounded-3xl p-6 transition-all hover:translate-x-2">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden bg-primary-fixed">
+                            <img alt="Sarah J." class="w-full h-full object-cover"
+                                alt="Portrait of a smiling professional woman"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBlQ41YS4ohFPCGk8JROFocnIlNZ8v0z0ZOqIrX4Y4Xc4oHof9cT1vYpYsa0Nv3NAkYhec2aVsLeTyuS3I1ONfsHbiSK4s8-bmzOCTzdtWkA63bVB5PxFkFOVj4AnnI0KzRBbTZbnkYtN9-6grJpP-oe_Com8agk1dgIaJSKCOc5WugqfnaXuyiZc5oJ_B0NtWkFffsERN1t106fwfRCfxD4jemeIHt7m3CTAu5CMR2AtNK_mlNOjH6WvWqCbO3OAeHa6hm9Wexw" />
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-on-surface leading-none">Dr. Sarah Jenkins</h4>
+                            <span class="text-xs text-on-surface-variant">Clinic Director</span>
+                        </div>
+                        <div class="ml-auto flex">
+                            <span class="material-symbols-outlined text-primary-container text-xs"
+                                style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-primary-container text-xs"
+                                style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-primary-container text-xs"
+                                style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-primary-container text-xs"
+                                style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-primary-container text-xs"
+                                style="font-variation-settings: 'FILL' 1;">star</span>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant text-sm italic">"The technical expertise and emergency response from Zahra Medical is
+                        truly unparalleled. They keep our clinic's equipment running at 100%."</p>
+                </div>
+                <!-- Testimonial Card 2 -->
+                <div class="bg-surface-container rounded-3xl p-6 transition-all hover:translate-x-2">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden bg-secondary-fixed">
+                            <img loading="lazy" alt="David M." class="w-full h-full object-cover"
+                                alt="Portrait of a middle aged man"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoBaS9ricIDTuhRJVFjbEmqwIY0SIteL3zJr1hsne2GQfZqJjZZsh0OXUAfNm2dTtMCAgebsg3gjiMG9tFNoVxnt9FCZHJGyFh8vbin6OCYqGLey0SJs1iWsrgE6wG5OLPlpsGeYTBb-FQVrpAzGxyNXRAu72NgNX-Woij_Tyj2jQgskQpDNCYezaJXOJj2sf2YXjgU1AR0Jn4du98IwScbfhC73BOableLTkwbQCYgMD_lCAX5HBAM-SjDobAUz2IhzykRKefkA" />
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-on-surface leading-none">David Miller</h4>
+                            <span class="text-xs text-on-surface-variant">Lead Biomedical Engineer</span>
+                        </div>
+                        <div class="ml-auto flex">
+                            <span class="material-symbols-outlined text-primary-container text-xs"
+                                style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-primary-container text-xs"
+                                style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-primary-container text-xs"
+                                style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-primary-container text-xs"
+                                style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-outline-variant text-xs">star</span>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant text-sm italic">"Efficient component sourcing and very professional engineering staff.
+                        The post-maintenance calibration was exceptional."</p>
+                </div>
+                <!-- Testimonial Card 3 -->
+                <div
+                    class="bg-primary-container text-on-primary-container rounded-3xl p-6 relative overflow-hidden group">
+                    <div class="relative z-10">
+                        <p class="text-xs font-bold uppercase mb-2 opacity-80">98% Satisfaction</p>
+                        <h4 class="text-lg font-bold mb-4">Join our community.</h4>
+                        <div class="flex -space-x-3 mb-4">
+                            <div
+                                class="w-8 h-8 rounded-full border-2 border-primary-container bg-slate-200 overflow-hidden">
+                                <img loading="lazy" class="w-full h-full object-cover" alt="User avatar 1"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVEGEFMzFpxBU-8_G-8_gY2fjLOqqVmFKsMKfyh02lPyFWYlhSYjf3jf2ETzzTbQ6MfVJHuFu9W-uxUqB5nQErBM7_SMQSZjQjuXoPj-kBRbQiJ52XyXDzAAiz2NsHIp3Md1rX1j5j5wi4G4plPGOfTQUJYWNHHi5ThTl6ZnFjmYnRwbrdPjN3gMaxNS3v2sCrOs2hxmHlrUELhNhv3n9OXNjmUB73C9jnJ4SGf9FD0l6X96Li3N2A4yqSGdAJpJW3JwkdI9sMFw" />
+                            </div>
+                            <div
+                                class="w-8 h-8 rounded-full border-2 border-primary-container bg-slate-300 overflow-hidden">
+                                <img loading="lazy" class="w-full h-full object-cover" alt="User avatar 2"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL_uhNXj_cWMwMxGV7CB3hQK9ZGARLMvigJGParWDzvJEjkmUh-G7Uawcew7LM-rAMKTOp8F1TH1VUVFlzLFNJin53dkLJFfQg9lGpMgmhx5SBlnkMvnCVqpAfi1zwia_G3uEH4BVHzzJ20fXj3uo563gA8pX0eac8IhdMP9P4Ake5vr92Dkc_cM8Ed4d1Gc-YGtq_IsGJeM92WpDkSbGBHMOoTu4iN-gYL-AQwxGaucr9d4j3bwOmwvG7obQMExj1TaHh8l-Bqw" />
+                            </div>
+                            <div
+                                class="w-8 h-8 rounded-full border-2 border-primary-container bg-slate-400 overflow-hidden">
+                                <img loading="lazy" class="w-full h-full object-cover" alt="User avatar 3"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3JKTBd4cMPPnLwEkn60LwWJ2nGAcc5WR8FUSySqBKzPskdK9ZRQPtxzxgymOxepBpuujAm5cTm32lQhvpRMMnYuC8G7nZS_7HHvM5uZIussS5HSuq-qVgjfuLeBrei7VKfqn7JkDvVQKjeSufoSABzatVcqD6ZoM3BPGlI8Mnlwycnj1iADXwnjMJhZZswWGZ7Q7k5G7GPbuGjgAWDI-1sc7WCjEqGFa0aHOV2DkmAW0cnd-Fm1EwjBnTygf8ZI4MRWSjONBAMA" />
+                            </div>
+                            <div
+                                class="w-8 h-8 rounded-full border-2 border-primary-container bg-fuchsia-900 flex items-center justify-center text-[10px] font-bold">
+                                +12k</div>
+                        </div>
+                        <a class="text-sm font-bold underline decoration-2 underline-offset-4 hover:text-white transition-all"
+                            href="#">Read more stories</a>
+                    </div>
+                    <div class="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-[80px]">settings_suggest</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+        <!-- Footer Component -->
+    <div id="site-footer-container"></div>
+    <script src="js/components.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/form-validation.js"></script>
+    <script>
+
+        const stars = document.querySelectorAll('.star-btn');
+        const ratingInput = document.getElementById('ratingInput');
+        const anonToggle = document.getElementById('anonymous-toggle');
+        const nameContainer = document.getElementById('name-container');
+        const nameInput = document.getElementById('feedback-name');
+
+        // Star Interaction Logic
+        stars.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const val = parseInt(btn.dataset.val);
+                ratingInput.value = val;
+                
+                // Animate and Color stars
+                stars.forEach((s, idx) => {
+                    const i = idx + 1;
+                    if (i <= val) {
+                        s.style.fontVariationSettings = "'FILL' 1";
+                        s.classList.add('text-primary-container');
+                        s.classList.remove('text-outline-variant');
+                        
+                        // Special Celebratory Glow for 5 stars
+                        if (val === 5) {
+                            s.classList.add('animate-star-glow');
+                            setTimeout(() => s.classList.remove('animate-star-glow'), 600);
+                        } else if (i === val) {
+                            // Single click feedback for other ratings
+                            s.classList.add('animate-star-glow');
+                            setTimeout(() => s.classList.remove('animate-star-glow'), 600);
+                        }
+                    } else {
+                        s.style.fontVariationSettings = "'FILL' 0";
+                        s.classList.remove('text-primary-container');
+                        s.classList.add('text-outline-variant underline-offset-4');
+                    }
+                });
+            });
+        });
+
+        // Anonymous Toggle Logic
+        anonToggle.addEventListener('change', () => {
+            if (anonToggle.checked) {
+                nameContainer.classList.add('hidden');
+                nameInput.required = false;
+                nameInput.value = 'Anonymous';
+            } else {
+                nameContainer.classList.remove('hidden');
+                nameInput.required = true;
+                nameInput.value = '';
+            }
+        });
+
+        // Form Submit
+        const form = document.querySelector('form');
+        form.onsubmit = (e) => {
+            e.preventDefault();
+            form.classList.add('hidden');
+            document.getElementById('feedback-thankyou').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+    </script>
+</body>
+</html>
